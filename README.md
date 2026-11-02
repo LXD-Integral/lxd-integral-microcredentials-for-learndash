@@ -1,6 +1,7 @@
-# Open Badges for LearnDash
+# LXD Integral Microcredentials for LearnDash
 
-A self-contained WordPress plugin that automatically issues Open Badges to LearnDash learners
+A self-contained WordPress plugin that automatically issues Open Badges (the standard format for
+microcredentials) to LearnDash learners
 through [Open Badge Factory](https://openbadgefactory.com) or [CanCred](https://cancred.ca)
 (Open Badge Factory API v2) — no Zapier or other external automation required.
 
@@ -89,7 +90,7 @@ npm install             # block editor toolchain
 npm run build           # build the Earned Badges block from blocks/ into build/
 ```
 
-The plugin loads its own classes with a PSR-4 autoloader in `open-badges-for-learndash.php`, so a
+The plugin loads its own classes with a PSR-4 autoloader in `lxd-integral-microcredentials-for-learndash.php`, so a
 source checkout runs without Composer. The block must be built before it appears in the editor;
 the shortcode works either way. The compiled block script in `build/` is produced from the source
 in `blocks/` with `@wordpress/scripts`; both ship in the release.

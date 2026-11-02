@@ -29,10 +29,10 @@ enum EventType: string {
 	 */
 	public function label(): string {
 		return match ( $this ) {
-			self::CourseCompleted => __( 'Course completed', 'open-badges-for-learndash' ),
-			self::LessonCompleted => __( 'Lesson completed', 'open-badges-for-learndash' ),
-			self::TopicCompleted  => __( 'Topic completed', 'open-badges-for-learndash' ),
-			self::QuizCompleted   => __( 'Quiz completed', 'open-badges-for-learndash' ),
+			self::CourseCompleted => __( 'Course completed', 'lxd-integral-microcredentials-for-learndash' ),
+			self::LessonCompleted => __( 'Lesson completed', 'lxd-integral-microcredentials-for-learndash' ),
+			self::TopicCompleted  => __( 'Topic completed', 'lxd-integral-microcredentials-for-learndash' ),
+			self::QuizCompleted   => __( 'Quiz completed', 'lxd-integral-microcredentials-for-learndash' ),
 		};
 	}
 
@@ -41,10 +41,10 @@ enum EventType: string {
 	 */
 	public function item_label(): string {
 		return match ( $this ) {
-			self::CourseCompleted => __( 'Course', 'open-badges-for-learndash' ),
-			self::LessonCompleted => __( 'Lesson', 'open-badges-for-learndash' ),
-			self::TopicCompleted  => __( 'Topic', 'open-badges-for-learndash' ),
-			self::QuizCompleted   => __( 'Quiz', 'open-badges-for-learndash' ),
+			self::CourseCompleted => __( 'Course', 'lxd-integral-microcredentials-for-learndash' ),
+			self::LessonCompleted => __( 'Lesson', 'lxd-integral-microcredentials-for-learndash' ),
+			self::TopicCompleted  => __( 'Topic', 'lxd-integral-microcredentials-for-learndash' ),
+			self::QuizCompleted   => __( 'Quiz', 'lxd-integral-microcredentials-for-learndash' ),
 		};
 	}
 

@@ -56,11 +56,11 @@ final class LogListTable extends \WP_List_Table {
 	 */
 	public function get_columns(): array {
 		return array(
-			'created_at' => __( 'When', 'open-badges-for-learndash' ),
-			'outcome'    => __( 'Outcome', 'open-badges-for-learndash' ),
-			'user'       => __( 'Learner', 'open-badges-for-learndash' ),
-			'badge'      => __( 'Badge', 'open-badges-for-learndash' ),
-			'message'    => __( 'Message', 'open-badges-for-learndash' ),
+			'created_at' => __( 'When', 'lxd-integral-microcredentials-for-learndash' ),
+			'outcome'    => __( 'Outcome', 'lxd-integral-microcredentials-for-learndash' ),
+			'user'       => __( 'Learner', 'lxd-integral-microcredentials-for-learndash' ),
+			'badge'      => __( 'Badge', 'lxd-integral-microcredentials-for-learndash' ),
+			'message'    => __( 'Message', 'lxd-integral-microcredentials-for-learndash' ),
 		);
 	}
 
@@ -103,7 +103,7 @@ final class LogListTable extends \WP_List_Table {
 			. '<br /><span class="description">' . esc_html(
 				sprintf(
 					/* translators: %s: human-readable time difference, e.g. "2 mins". */
-					__( '%s ago', 'open-badges-for-learndash' ),
+					__( '%s ago', 'lxd-integral-microcredentials-for-learndash' ),
 					human_time_diff( $timestamp )
 				)
 			) . '</span>';
@@ -116,10 +116,10 @@ final class LogListTable extends \WP_List_Table {
 	 */
 	public function column_outcome( object $item ): string {
 		if ( Logger::ERROR === $item->outcome ) {
-			return '<span style="color:#b32d2e;font-weight:600;">' . esc_html__( 'Error', 'open-badges-for-learndash' ) . '</span>';
+			return '<span style="color:#b32d2e;font-weight:600;">' . esc_html__( 'Error', 'lxd-integral-microcredentials-for-learndash' ) . '</span>';
 		}
 
-		return '<span style="color:#00794b;">' . esc_html__( 'Success', 'open-badges-for-learndash' ) . '</span>';
+		return '<span style="color:#00794b;">' . esc_html__( 'Success', 'lxd-integral-microcredentials-for-learndash' ) . '</span>';
 	}
 
 	/**
@@ -138,7 +138,7 @@ final class LogListTable extends \WP_List_Table {
 			return esc_html(
 				sprintf(
 					/* translators: %d: user ID of a deleted account. */
-					__( 'Deleted user #%d', 'open-badges-for-learndash' ),
+					__( 'Deleted user #%d', 'lxd-integral-microcredentials-for-learndash' ),
 					(int) $item->user_id
 				)
 			);

@@ -45,8 +45,8 @@ final class Privacy {
 	 * @return array<string, array<string, mixed>>
 	 */
 	public function register_exporter( array $exporters ): array {
-		$exporters['open-badges-for-learndash'] = array(
-			'exporter_friendly_name' => __( 'Open Badges for LearnDash', 'open-badges-for-learndash' ),
+		$exporters['lxd-integral-microcredentials-for-learndash'] = array(
+			'exporter_friendly_name' => __( 'LXD Integral Microcredentials for LearnDash', 'lxd-integral-microcredentials-for-learndash' ),
 			'callback'               => array( $this, 'export' ),
 		);
 
@@ -61,8 +61,8 @@ final class Privacy {
 	 * @return array<string, array<string, mixed>>
 	 */
 	public function register_eraser( array $erasers ): array {
-		$erasers['open-badges-for-learndash'] = array(
-			'eraser_friendly_name' => __( 'Open Badges for LearnDash', 'open-badges-for-learndash' ),
+		$erasers['lxd-integral-microcredentials-for-learndash'] = array(
+			'eraser_friendly_name' => __( 'LXD Integral Microcredentials for LearnDash', 'lxd-integral-microcredentials-for-learndash' ),
 			'callback'             => array( $this, 'erase' ),
 		);
 
@@ -104,31 +104,31 @@ final class Privacy {
 
 			$data[] = array(
 				'group_id'    => self::GROUP,
-				'group_label' => __( 'Open Badges', 'open-badges-for-learndash' ),
+				'group_label' => __( 'Open Badges', 'lxd-integral-microcredentials-for-learndash' ),
 				'item_id'     => 'obld-award-' . (int) $row->id,
 				'data'        => array(
 					array(
-						'name'  => __( 'Badge', 'open-badges-for-learndash' ),
+						'name'  => __( 'Badge', 'lxd-integral-microcredentials-for-learndash' ),
 						'value' => (string) ( $row->badge_name ?? '' ),
 					),
 					array(
-						'name'  => __( 'Provider', 'open-badges-for-learndash' ),
+						'name'  => __( 'Provider', 'lxd-integral-microcredentials-for-learndash' ),
 						'value' => $provider instanceof Provider ? $provider->label() : (string) $row->provider,
 					),
 					array(
-						'name'  => __( 'Recipient email', 'open-badges-for-learndash' ),
+						'name'  => __( 'Recipient email', 'lxd-integral-microcredentials-for-learndash' ),
 						'value' => (string) $row->recipient_email,
 					),
 					array(
-						'name'  => __( 'Status', 'open-badges-for-learndash' ),
-						'value' => ! empty( $row->revoked ) ? __( 'Revoked', 'open-badges-for-learndash' ) : (string) $row->status,
+						'name'  => __( 'Status', 'lxd-integral-microcredentials-for-learndash' ),
+						'value' => ! empty( $row->revoked ) ? __( 'Revoked', 'lxd-integral-microcredentials-for-learndash' ) : (string) $row->status,
 					),
 					array(
-						'name'  => __( 'Issued (UTC)', 'open-badges-for-learndash' ),
+						'name'  => __( 'Issued (UTC)', 'lxd-integral-microcredentials-for-learndash' ),
 						'value' => (string) ( $row->issued_at ?? '' ),
 					),
 					array(
-						'name'  => __( 'Expires (UTC)', 'open-badges-for-learndash' ),
+						'name'  => __( 'Expires (UTC)', 'lxd-integral-microcredentials-for-learndash' ),
 						'value' => (string) ( $row->expires_on ?? '' ),
 					),
 				),
@@ -174,7 +174,7 @@ final class Privacy {
 
 		$messages = array();
 		if ( $blanked > 0 ) {
-			$messages[] = __( 'The email address was removed from the badge award records; the records themselves are kept so the badge is not issued twice. The credential itself is held by the badge provider.', 'open-badges-for-learndash' );
+			$messages[] = __( 'The email address was removed from the badge award records; the records themselves are kept so the badge is not issued twice. The credential itself is held by the badge provider.', 'lxd-integral-microcredentials-for-learndash' );
 		}
 
 		return array(

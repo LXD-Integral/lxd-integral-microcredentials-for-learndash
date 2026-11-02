@@ -1,4 +1,4 @@
-# Open Badges for LearnDash — agent notes
+# LXD Integral Microcredentials for LearnDash — agent notes
 
 A WordPress plugin that issues Open Badges to LearnDash learners via Open Badge Factory / CanCred
 (API v2). This is a fresh build replacing the never-functional "Pathwise Badge Connect" plugin,
@@ -19,7 +19,7 @@ Key background lives in `dan-docs/` — Dan's personal reference, deliberately u
 `readme.txt` is the WordPress.org listing (header, description, FAQ, changelog); `README.md` is
 the GitHub front page. Keep the version in sync across the plugin header, `OBLD_VERSION`,
 `package.json`, `readme.txt` (`Stable tag`) and the changelog — CI asserts the first three and
-the stable tag agree. The plugin ships no `vendor/`: `open-badges-for-learndash.php` carries a
+the stable tag agree. The plugin ships no `vendor/`: `lxd-integral-microcredentials-for-learndash.php` carries a
 PSR-4 autoloader for `src/`, and Composer exists only for PHPUnit and PHPCS. CI stages the
 release by allow-list, runs Plugin Check against the staged directory, and installs the zip on
 WordPress 6.6 and latest with `WP_DEBUG` on (every admin screen is loaded and the debug log must

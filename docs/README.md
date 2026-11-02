@@ -1,6 +1,6 @@
 # Documentation
 
-User-facing documentation for **Open Badges for LearnDash**. Start with the main
+User-facing documentation for **LXD Integral Microcredentials for LearnDash**. Start with the main
 [README](../README.md) for requirements, installation, and initial setup; the material here
 expands on it.
 

@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
 
 env:
-  SLUG: open-badges-for-learndash
+  SLUG: lxd-integral-microcredentials-for-learndash
 
 jobs:
   update:

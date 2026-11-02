@@ -64,7 +64,7 @@ final class BadgesPage {
 	 */
 	public function render(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'open-badges-for-learndash' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		$any_configured = false;
@@ -75,20 +75,20 @@ final class BadgesPage {
 		}
 
 		echo '<div class="wrap">';
-		echo '<h1 class="wp-heading-inline">' . esc_html__( 'Badges', 'open-badges-for-learndash' ) . '</h1>';
+		echo '<h1 class="wp-heading-inline">' . esc_html__( 'Badges', 'lxd-integral-microcredentials-for-learndash' ) . '</h1>';
 
 		if ( $any_configured ) {
 			$sync_url = wp_nonce_url(
 				admin_url( 'admin-post.php?action=' . self::SYNC_ACTION ),
 				self::SYNC_ACTION
 			);
-			echo ' <a href="' . esc_url( $sync_url ) . '" class="page-title-action">' . esc_html__( 'Sync Now', 'open-badges-for-learndash' ) . '</a>';
+			echo ' <a href="' . esc_url( $sync_url ) . '" class="page-title-action">' . esc_html__( 'Sync Now', 'lxd-integral-microcredentials-for-learndash' ) . '</a>';
 
 			$refresh_url = wp_nonce_url(
 				admin_url( 'admin-post.php?action=' . self::REFRESH_ACTION ),
 				self::REFRESH_ACTION
 			);
-			echo ' <a href="' . esc_url( $refresh_url ) . '" class="page-title-action">' . esc_html__( 'Refresh Award Status', 'open-badges-for-learndash' ) . '</a>';
+			echo ' <a href="' . esc_url( $refresh_url ) . '" class="page-title-action">' . esc_html__( 'Refresh Award Status', 'lxd-integral-microcredentials-for-learndash' ) . '</a>';
 		}
 
 		echo '<hr class="wp-header-end" />';
@@ -99,7 +99,7 @@ final class BadgesPage {
 			echo '<p>' . wp_kses(
 				sprintf(
 					/* translators: %s: settings page URL. */
-					__( 'No badge provider is connected yet. <a href="%s">Add your Open Badge Factory or CanCred credentials</a> first, then sync your badges here.', 'open-badges-for-learndash' ),
+					__( 'No badge provider is connected yet. <a href="%s">Add your Open Badge Factory or CanCred credentials</a> first, then sync your badges here.', 'lxd-integral-microcredentials-for-learndash' ),
 					esc_url( SettingsPage::url() )
 				),
 				array( 'a' => array( 'href' => array() ) )
@@ -113,7 +113,7 @@ final class BadgesPage {
 		$badges = $this->repo->all();
 
 		if ( array() === $badges ) {
-			echo '<p>' . esc_html__( 'No badges yet — click Sync Now to fetch the badges from your connected providers.', 'open-badges-for-learndash' ) . '</p></div>';
+			echo '<p>' . esc_html__( 'No badges yet — click Sync Now to fetch the badges from your connected providers.', 'lxd-integral-microcredentials-for-learndash' ) . '</p></div>';
 			return;
 		}
 
@@ -149,7 +149,7 @@ final class BadgesPage {
 				echo esc_html(
 					sprintf(
 						/* translators: 1: provider name, 2: badge count, 3: added, 4: updated, 5: removed. */
-						__( '%1$s: synced %2$d badges (%3$d added, %4$d updated, %5$d removed).', 'open-badges-for-learndash' ),
+						__( '%1$s: synced %2$d badges (%3$d added, %4$d updated, %5$d removed).', 'lxd-integral-microcredentials-for-learndash' ),
 						$provider->label(),
 						$result['count'],
 						$result['added'],
@@ -163,7 +163,7 @@ final class BadgesPage {
 				echo esc_html(
 					sprintf(
 						/* translators: 1: provider name, 2: failure detail. */
-						__( '%1$s sync failed: %2$s', 'open-badges-for-learndash' ),
+						__( '%1$s sync failed: %2$s', 'lxd-integral-microcredentials-for-learndash' ),
 						$provider->label(),
 						$result['message']
 					)
@@ -188,7 +188,7 @@ final class BadgesPage {
 			if ( SyncService::STATUS_SYNCED === $result['status'] ) {
 				$parts[] = sprintf(
 					/* translators: 1: provider name, 2: badge count, 3: human-readable time difference. */
-					__( '%1$s: %2$d badges, synced %3$s ago', 'open-badges-for-learndash' ),
+					__( '%1$s: %2$d badges, synced %3$s ago', 'lxd-integral-microcredentials-for-learndash' ),
 					$provider->label(),
 					$result['count'],
 					human_time_diff( (int) $result['synced_at'] )
@@ -196,7 +196,7 @@ final class BadgesPage {
 			} else {
 				$parts[] = sprintf(
 					/* translators: 1: provider name, 2: failure detail. */
-					__( '%1$s: last sync failed — %2$s', 'open-badges-for-learndash' ),
+					__( '%1$s: last sync failed — %2$s', 'lxd-integral-microcredentials-for-learndash' ),
 					$provider->label(),
 					$result['message']
 				);
@@ -223,7 +223,7 @@ final class BadgesPage {
 				echo esc_html(
 					sprintf(
 						/* translators: 1: provider name, 2: awards compared, 3: awards changed, 4: newly revoked, 5: newly saved to Passport. */
-						__( '%1$s: checked %2$d awards, %3$d changed (%4$d revoked, %5$d saved to Passport).', 'open-badges-for-learndash' ),
+						__( '%1$s: checked %2$d awards, %3$d changed (%4$d revoked, %5$d saved to Passport).', 'lxd-integral-microcredentials-for-learndash' ),
 						$provider->label(),
 						$result['checked'],
 						$result['changed'],
@@ -237,7 +237,7 @@ final class BadgesPage {
 				echo esc_html(
 					sprintf(
 						/* translators: 1: provider name, 2: failure detail. */
-						__( '%1$s award status check failed: %2$s', 'open-badges-for-learndash' ),
+						__( '%1$s award status check failed: %2$s', 'lxd-integral-microcredentials-for-learndash' ),
 						$provider->label(),
 						$result['message']
 					)
@@ -262,7 +262,7 @@ final class BadgesPage {
 			if ( StatusSync::STATUS_CHECKED === $result['status'] ) {
 				$parts[] = sprintf(
 					/* translators: 1: provider name, 2: awards compared, 3: human-readable time difference. */
-					__( '%1$s: %2$d awards, status checked %3$s ago', 'open-badges-for-learndash' ),
+					__( '%1$s: %2$d awards, status checked %3$s ago', 'lxd-integral-microcredentials-for-learndash' ),
 					$provider->label(),
 					$result['checked'],
 					human_time_diff( (int) $result['checked_at'] )
@@ -270,7 +270,7 @@ final class BadgesPage {
 			} else {
 				$parts[] = sprintf(
 					/* translators: 1: provider name, 2: failure detail. */
-					__( '%1$s: last status check failed — %2$s', 'open-badges-for-learndash' ),
+					__( '%1$s: last status check failed — %2$s', 'lxd-integral-microcredentials-for-learndash' ),
 					$provider->label(),
 					$result['message']
 				);
@@ -287,7 +287,7 @@ final class BadgesPage {
 	 */
 	public function handle_refresh(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'open-badges-for-learndash' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 		check_admin_referer( self::REFRESH_ACTION );
 
@@ -302,7 +302,7 @@ final class BadgesPage {
 	 */
 	public function handle_sync(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'open-badges-for-learndash' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 		check_admin_referer( self::SYNC_ACTION );
 

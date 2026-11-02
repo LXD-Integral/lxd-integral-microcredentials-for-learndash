@@ -84,18 +84,18 @@ final class TriggersPage {
 	 */
 	public function render(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'open-badges-for-learndash' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		echo '<div class="wrap">';
-		echo '<h1 class="wp-heading-inline">' . esc_html__( 'Triggers', 'open-badges-for-learndash' ) . '</h1>';
+		echo '<h1 class="wp-heading-inline">' . esc_html__( 'Triggers', 'lxd-integral-microcredentials-for-learndash' ) . '</h1>';
 		echo '<hr class="wp-header-end" />';
 
 		$this->render_feedback();
 
 		echo '<p class="description">' . esc_html__(
 			'A trigger awards a badge when a learner completes a specific LearnDash item.',
-			'open-badges-for-learndash'
+			'lxd-integral-microcredentials-for-learndash'
 		) . '</p>';
 
 		$table = new TriggerListTable( $this->triggers->all(), $this->items );
@@ -111,7 +111,7 @@ final class TriggersPage {
 	 * The add-a-trigger form, or an explanation of what is missing.
 	 */
 	private function render_form(): void {
-		echo '<h2>' . esc_html__( 'Add a trigger', 'open-badges-for-learndash' ) . '</h2>';
+		echo '<h2>' . esc_html__( 'Add a trigger', 'lxd-integral-microcredentials-for-learndash' ) . '</h2>';
 
 		$badges = $this->badges->selectable();
 
@@ -119,7 +119,7 @@ final class TriggersPage {
 			echo '<p>' . wp_kses(
 				sprintf(
 					/* translators: %s: badges page URL. */
-					__( 'No badges are available to award yet. <a href="%s">Sync your badges</a> first — draft badges cannot be issued, so they are not offered here.', 'open-badges-for-learndash' ),
+					__( 'No badges are available to award yet. <a href="%s">Sync your badges</a> first — draft badges cannot be issued, so they are not offered here.', 'lxd-integral-microcredentials-for-learndash' ),
 					esc_url( BadgesPage::url() )
 				),
 				array( 'a' => array( 'href' => array() ) )
@@ -130,7 +130,7 @@ final class TriggersPage {
 		if ( ! $this->items->learndash_active() ) {
 			echo '<div class="notice notice-warning inline"><p>' . esc_html__(
 				'LearnDash is not active, so there are no courses, lessons, topics, or quizzes to choose from.',
-				'open-badges-for-learndash'
+				'lxd-integral-microcredentials-for-learndash'
 			) . '</p></div>';
 			return;
 		}
@@ -146,7 +146,7 @@ final class TriggersPage {
 		if ( ! $has_items ) {
 			echo '<div class="notice notice-warning inline"><p>' . esc_html__(
 				'No published LearnDash courses, lessons, topics, or quizzes were found. Publish one, then add a trigger for it.',
-				'open-badges-for-learndash'
+				'lxd-integral-microcredentials-for-learndash'
 			) . '</p></div>';
 			return;
 		}
@@ -159,7 +159,7 @@ final class TriggersPage {
 		echo '<table class="form-table" role="presentation"><tbody>';
 
 		// Event type.
-		echo '<tr><th scope="row"><label for="obld-event-type">' . esc_html__( 'When', 'open-badges-for-learndash' ) . '</label></th><td>';
+		echo '<tr><th scope="row"><label for="obld-event-type">' . esc_html__( 'When', 'lxd-integral-microcredentials-for-learndash' ) . '</label></th><td>';
 		echo '<select name="event_type" id="obld-event-type">';
 		foreach ( EventType::cases() as $event_type ) {
 			printf(
@@ -171,13 +171,13 @@ final class TriggersPage {
 		echo '</select></td></tr>';
 
 		// Target item — options are swapped client-side to match the event type.
-		echo '<tr><th scope="row"><label for="obld-target-id">' . esc_html__( 'Item', 'open-badges-for-learndash' ) . '</label></th><td>';
+		echo '<tr><th scope="row"><label for="obld-target-id">' . esc_html__( 'Item', 'lxd-integral-microcredentials-for-learndash' ) . '</label></th><td>';
 		echo '<select name="target_id" id="obld-target-id"></select>';
-		echo '<p class="description">' . esc_html__( 'Only published items are listed.', 'open-badges-for-learndash' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Only published items are listed.', 'lxd-integral-microcredentials-for-learndash' ) . '</p>';
 		echo '</td></tr>';
 
 		// Badge.
-		echo '<tr><th scope="row"><label for="obld-badge-id">' . esc_html__( 'Award badge', 'open-badges-for-learndash' ) . '</label></th><td>';
+		echo '<tr><th scope="row"><label for="obld-badge-id">' . esc_html__( 'Award badge', 'lxd-integral-microcredentials-for-learndash' ) . '</label></th><td>';
 		echo '<select name="badge_id" id="obld-badge-id">';
 		foreach ( $badges as $badge ) {
 			$provider = Provider::tryFrom( (string) $badge->provider );
@@ -194,13 +194,13 @@ final class TriggersPage {
 		echo '</select></td></tr>';
 
 		// Minimum score — quiz events only; shown/hidden client-side.
-		echo '<tr id="obld-min-score-row"><th scope="row"><label for="obld-min-score">' . esc_html__( 'Minimum score', 'open-badges-for-learndash' ) . '</label></th><td>';
+		echo '<tr id="obld-min-score-row"><th scope="row"><label for="obld-min-score">' . esc_html__( 'Minimum score', 'lxd-integral-microcredentials-for-learndash' ) . '</label></th><td>';
 		echo '<input type="number" name="min_score" id="obld-min-score" min="0" max="100" step="0.01" class="small-text" /> %';
-		echo '<p class="description">' . esc_html__( 'Optional. Leave empty to award the badge for any passing completion.', 'open-badges-for-learndash' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Optional. Leave empty to award the badge for any passing completion.', 'lxd-integral-microcredentials-for-learndash' ) . '</p>';
 		echo '</td></tr>';
 
 		echo '</tbody></table>';
-		submit_button( __( 'Add trigger', 'open-badges-for-learndash' ) );
+		submit_button( __( 'Add trigger', 'lxd-integral-microcredentials-for-learndash' ) );
 		echo '</form>';
 
 		$this->render_form_script( $sets );
@@ -227,7 +227,7 @@ final class TriggersPage {
 		echo '<div class="notice notice-info inline"><p>' . esc_html(
 			sprintf(
 				/* translators: 1: comma-separated item type names, 2: maximum number listed. */
-				__( 'This site has more %1$s than the form lists; only the first %2$d (alphabetical) are selectable.', 'open-badges-for-learndash' ),
+				__( 'This site has more %1$s than the form lists; only the first %2$d (alphabetical) are selectable.', 'lxd-integral-microcredentials-for-learndash' ),
 				implode( ', ', $capped ),
 				ItemRepository::MAX_ITEMS
 			)
@@ -245,7 +245,7 @@ final class TriggersPage {
 		$data = array(
 			'items'          => array(),
 			'scoreEvents'    => array(),
-			'noItemsMessage' => __( 'No published items of this type', 'open-badges-for-learndash' ),
+			'noItemsMessage' => __( 'No published items of this type', 'lxd-integral-microcredentials-for-learndash' ),
 		);
 
 		foreach ( EventType::cases() as $event_type ) {
@@ -376,7 +376,7 @@ final class TriggersPage {
 	 */
 	private function authorize( string $action ): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'open-badges-for-learndash' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		check_admin_referer( $action );
@@ -389,7 +389,7 @@ final class TriggersPage {
 	 */
 	private function authorize_row( string $action ): int {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'open-badges-for-learndash' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- verified on the next line, which needs this id.
@@ -422,16 +422,16 @@ final class TriggersPage {
 		}
 
 		$messages = array(
-			'added'         => array( 'success', __( 'Trigger added.', 'open-badges-for-learndash' ) ),
-			'deleted'       => array( 'success', __( 'Trigger deleted.', 'open-badges-for-learndash' ) ),
-			'enabled'       => array( 'success', __( 'Trigger enabled.', 'open-badges-for-learndash' ) ),
-			'disabled'      => array( 'success', __( 'Trigger disabled.', 'open-badges-for-learndash' ) ),
-			'err_item'      => array( 'error', __( 'Choose a published LearnDash item that matches the selected event.', 'open-badges-for-learndash' ) ),
-			'err_badge'     => array( 'error', __( 'Choose a synced, published badge. Draft badges and badges missing at the provider cannot be awarded.', 'open-badges-for-learndash' ) ),
-			'err_score'     => array( 'error', __( 'The minimum score must be a number between 0 and 100.', 'open-badges-for-learndash' ) ),
-			'err_duplicate' => array( 'error', __( 'That badge is already awarded by an existing trigger on this item.', 'open-badges-for-learndash' ) ),
-			'err_save'      => array( 'error', __( 'The trigger could not be saved. Please try again.', 'open-badges-for-learndash' ) ),
-			'err_notfound'  => array( 'error', __( 'That trigger no longer exists.', 'open-badges-for-learndash' ) ),
+			'added'         => array( 'success', __( 'Trigger added.', 'lxd-integral-microcredentials-for-learndash' ) ),
+			'deleted'       => array( 'success', __( 'Trigger deleted.', 'lxd-integral-microcredentials-for-learndash' ) ),
+			'enabled'       => array( 'success', __( 'Trigger enabled.', 'lxd-integral-microcredentials-for-learndash' ) ),
+			'disabled'      => array( 'success', __( 'Trigger disabled.', 'lxd-integral-microcredentials-for-learndash' ) ),
+			'err_item'      => array( 'error', __( 'Choose a published LearnDash item that matches the selected event.', 'lxd-integral-microcredentials-for-learndash' ) ),
+			'err_badge'     => array( 'error', __( 'Choose a synced, published badge. Draft badges and badges missing at the provider cannot be awarded.', 'lxd-integral-microcredentials-for-learndash' ) ),
+			'err_score'     => array( 'error', __( 'The minimum score must be a number between 0 and 100.', 'lxd-integral-microcredentials-for-learndash' ) ),
+			'err_duplicate' => array( 'error', __( 'That badge is already awarded by an existing trigger on this item.', 'lxd-integral-microcredentials-for-learndash' ) ),
+			'err_save'      => array( 'error', __( 'The trigger could not be saved. Please try again.', 'lxd-integral-microcredentials-for-learndash' ) ),
+			'err_notfound'  => array( 'error', __( 'That trigger no longer exists.', 'lxd-integral-microcredentials-for-learndash' ) ),
 		);
 
 		if ( ! isset( $messages[ $code ] ) ) {

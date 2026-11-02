@@ -135,7 +135,7 @@ final class CompletionListener {
 			$this->logger->error(
 				sprintf(
 					/* translators: %d: user ID. */
-					__( 'Cannot issue a badge to user %d: the account has no email address.', 'open-badges-for-learndash' ),
+					__( 'Cannot issue a badge to user %d: the account has no email address.', 'lxd-integral-microcredentials-for-learndash' ),
 					$user_id
 				),
 				array( 'user_id' => $user_id )
@@ -163,7 +163,7 @@ final class CompletionListener {
 			$this->logger->error(
 				sprintf(
 					/* translators: %s: badge name. */
-					__( 'Skipped issuing “%s”: the badge is no longer available at its provider.', 'open-badges-for-learndash' ),
+					__( 'Skipped issuing “%s”: the badge is no longer available at its provider.', 'lxd-integral-microcredentials-for-learndash' ),
 					(string) $trigger->badge_name
 				),
 				array(

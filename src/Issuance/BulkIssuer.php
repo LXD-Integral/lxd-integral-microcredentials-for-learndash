@@ -67,7 +67,7 @@ final class BulkIssuer {
 		$this->logger->success(
 			sprintf(
 				/* translators: 1: badge name, 2: queued count, 3: skipped count, 4: failed count. */
-				__( 'Manual issuance of “%1$s”: %2$d queued, %3$d already had it, %4$d could not be issued.', 'open-badges-for-learndash' ),
+				__( 'Manual issuance of “%1$s”: %2$d queued, %3$d already had it, %4$d could not be issued.', 'lxd-integral-microcredentials-for-learndash' ),
 				$badge_name,
 				$result['issued'],
 				$result['skipped'],
@@ -90,19 +90,19 @@ final class BulkIssuer {
 		$trigger = $this->triggers->find( $trigger_id );
 
 		if ( null === $trigger ) {
-			return new \WP_Error( 'obld_no_trigger', __( 'That trigger no longer exists.', 'open-badges-for-learndash' ) );
+			return new \WP_Error( 'obld_no_trigger', __( 'That trigger no longer exists.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		$event_type = EventType::tryFrom( (string) $trigger->event_type );
 
 		if ( ! $event_type instanceof EventType ) {
-			return new \WP_Error( 'obld_bad_trigger', __( 'That trigger has an unrecognised event type.', 'open-badges-for-learndash' ) );
+			return new \WP_Error( 'obld_bad_trigger', __( 'That trigger has an unrecognised event type.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		if ( ! $this->completions->available() ) {
 			return new \WP_Error(
 				'obld_no_activity_table',
-				__( 'LearnDash’s activity table is not available, so past completions cannot be read.', 'open-badges-for-learndash' )
+				__( 'LearnDash’s activity table is not available, so past completions cannot be read.', 'lxd-integral-microcredentials-for-learndash' )
 			);
 		}
 
@@ -148,7 +148,7 @@ final class BulkIssuer {
 		$this->logger->success(
 			sprintf(
 				/* translators: 1: badge name, 2: queued count, 3: skipped count, 4: failed count. */
-				__( 'Backfill of “%1$s”: %2$d queued, %3$d already had it, %4$d could not be issued.', 'open-badges-for-learndash' ),
+				__( 'Backfill of “%1$s”: %2$d queued, %3$d already had it, %4$d could not be issued.', 'lxd-integral-microcredentials-for-learndash' ),
 				(string) ( $trigger->badge_name ?? '' ),
 				$totals['issued'],
 				$totals['skipped'],
@@ -185,7 +185,7 @@ final class BulkIssuer {
 				$this->logger->error(
 					sprintf(
 						/* translators: %d: user ID. */
-						__( 'Cannot issue a badge to user %d: the account has no email address.', 'open-badges-for-learndash' ),
+						__( 'Cannot issue a badge to user %d: the account has no email address.', 'lxd-integral-microcredentials-for-learndash' ),
 						$user_id
 					),
 					array(

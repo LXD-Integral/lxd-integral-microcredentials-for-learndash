@@ -27,10 +27,10 @@ final class PrivacyTest extends TestCase {
 		$exporters = $privacy->register_exporter( array() );
 		$erasers   = $privacy->register_eraser( array() );
 
-		self::assertArrayHasKey( 'open-badges-for-learndash', $exporters );
-		self::assertIsCallable( $exporters['open-badges-for-learndash']['callback'] );
-		self::assertArrayHasKey( 'open-badges-for-learndash', $erasers );
-		self::assertIsCallable( $erasers['open-badges-for-learndash']['callback'] );
+		self::assertArrayHasKey( 'lxd-integral-microcredentials-for-learndash', $exporters );
+		self::assertIsCallable( $exporters['lxd-integral-microcredentials-for-learndash']['callback'] );
+		self::assertArrayHasKey( 'lxd-integral-microcredentials-for-learndash', $erasers );
+		self::assertIsCallable( $erasers['lxd-integral-microcredentials-for-learndash']['callback'] );
 	}
 
 	public function test_export_queries_awards_by_user_id_and_email(): void {

@@ -46,8 +46,8 @@ final class Menu {
 	 */
 	public function add_menu(): void {
 		add_menu_page(
-			__( 'Open Badges', 'open-badges-for-learndash' ),
-			__( 'Open Badges', 'open-badges-for-learndash' ),
+			__( 'Open Badges', 'lxd-integral-microcredentials-for-learndash' ),
+			__( 'Open Badges', 'lxd-integral-microcredentials-for-learndash' ),
 			'manage_options',
 			SettingsPage::SLUG,
 			array( $this->settings_page, 'render' ),
@@ -57,8 +57,8 @@ final class Menu {
 
 		add_submenu_page(
 			SettingsPage::SLUG,
-			__( 'Settings', 'open-badges-for-learndash' ),
-			__( 'Settings', 'open-badges-for-learndash' ),
+			__( 'Settings', 'lxd-integral-microcredentials-for-learndash' ),
+			__( 'Settings', 'lxd-integral-microcredentials-for-learndash' ),
 			'manage_options',
 			SettingsPage::SLUG,
 			array( $this->settings_page, 'render' )
@@ -66,8 +66,8 @@ final class Menu {
 
 		add_submenu_page(
 			SettingsPage::SLUG,
-			__( 'Badges', 'open-badges-for-learndash' ),
-			__( 'Badges', 'open-badges-for-learndash' ),
+			__( 'Badges', 'lxd-integral-microcredentials-for-learndash' ),
+			__( 'Badges', 'lxd-integral-microcredentials-for-learndash' ),
 			'manage_options',
 			BadgesPage::SLUG,
 			array( $this->badges_page, 'render' )
@@ -75,8 +75,8 @@ final class Menu {
 
 		add_submenu_page(
 			SettingsPage::SLUG,
-			__( 'Triggers', 'open-badges-for-learndash' ),
-			__( 'Triggers', 'open-badges-for-learndash' ),
+			__( 'Triggers', 'lxd-integral-microcredentials-for-learndash' ),
+			__( 'Triggers', 'lxd-integral-microcredentials-for-learndash' ),
 			'manage_options',
 			TriggersPage::SLUG,
 			array( $this->triggers_page, 'render' )
@@ -84,8 +84,8 @@ final class Menu {
 
 		add_submenu_page(
 			SettingsPage::SLUG,
-			__( 'Issue Badges', 'open-badges-for-learndash' ),
-			__( 'Issue Badges', 'open-badges-for-learndash' ),
+			__( 'Issue Badges', 'lxd-integral-microcredentials-for-learndash' ),
+			__( 'Issue Badges', 'lxd-integral-microcredentials-for-learndash' ),
 			'manage_options',
 			IssuePage::SLUG,
 			array( $this->issue_page, 'render' )
@@ -93,8 +93,8 @@ final class Menu {
 
 		add_submenu_page(
 			SettingsPage::SLUG,
-			__( 'Activity Log', 'open-badges-for-learndash' ),
-			__( 'Activity Log', 'open-badges-for-learndash' ),
+			__( 'Activity Log', 'lxd-integral-microcredentials-for-learndash' ),
+			__( 'Activity Log', 'lxd-integral-microcredentials-for-learndash' ),
 			'manage_options',
 			ActivityLogPage::SLUG,
 			array( $this->log_page, 'render' )

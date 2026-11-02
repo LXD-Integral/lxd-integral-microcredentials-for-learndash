@@ -103,7 +103,7 @@ final class StatusSync {
 	 */
 	private function sync_provider( Provider $provider, bool $manual ): array {
 		if ( ! $this->store->is_configured( $provider ) || $this->store->needs_reentry( $provider ) ) {
-			return $this->result( self::STATUS_SKIPPED, __( 'Not configured.', 'open-badges-for-learndash' ) );
+			return $this->result( self::STATUS_SKIPPED, __( 'Not configured.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		$awards = $this->awards->issued_for_provider( $provider );
@@ -127,7 +127,7 @@ final class StatusSync {
 				$this->logger->error(
 					sprintf(
 						/* translators: 1: provider name, 2: failure detail. */
-						__( 'Award status check failed for %1$s: %2$s', 'open-badges-for-learndash' ),
+						__( 'Award status check failed for %1$s: %2$s', 'lxd-integral-microcredentials-for-learndash' ),
 						$provider->label(),
 						$recipients->get_error_message()
 					)
@@ -226,7 +226,7 @@ final class StatusSync {
 			$this->logger->success(
 				sprintf(
 					/* translators: 1: provider name, 2: awards compared, 3: awards changed, 4: newly revoked, 5: newly saved to Passport, 6: expiry dates set or changed. */
-					__( 'Award status check (%1$s): %2$d awards compared, %3$d changed — %4$d newly revoked, %5$d newly saved to Passport, %6$d expiry updates.', 'open-badges-for-learndash' ),
+					__( 'Award status check (%1$s): %2$d awards compared, %3$d changed — %4$d newly revoked, %5$d newly saved to Passport, %6$d expiry updates.', 'lxd-integral-microcredentials-for-learndash' ),
 					$provider->label(),
 					count( $awards ),
 					$tally['changed'],

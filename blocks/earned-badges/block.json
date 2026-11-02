@@ -7,7 +7,7 @@
 	"icon": "awards",
 	"description": "Show the badges the current visitor has earned.",
 	"keywords": [ "badge", "open badges", "learndash" ],
-	"textdomain": "open-badges-for-learndash",
+	"textdomain": "lxd-integral-microcredentials-for-learndash",
 	"supports": {
 		"html": false,
 		"align": [ "wide", "full" ],

@@ -73,11 +73,11 @@ final class IssuePage {
 	 */
 	public function render(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'open-badges-for-learndash' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		echo '<div class="wrap">';
-		echo '<h1 class="wp-heading-inline">' . esc_html__( 'Issue Badges', 'open-badges-for-learndash' ) . '</h1>';
+		echo '<h1 class="wp-heading-inline">' . esc_html__( 'Issue Badges', 'lxd-integral-microcredentials-for-learndash' ) . '</h1>';
 		echo '<hr class="wp-header-end" />';
 
 		$this->render_feedback();
@@ -88,7 +88,7 @@ final class IssuePage {
 			echo '<p>' . wp_kses(
 				sprintf(
 					/* translators: %s: badges page URL. */
-					__( 'No badges are available to award yet. <a href="%s">Sync your badges</a> first.', 'open-badges-for-learndash' ),
+					__( 'No badges are available to award yet. <a href="%s">Sync your badges</a> first.', 'lxd-integral-microcredentials-for-learndash' ),
 					esc_url( BadgesPage::url() )
 				),
 				array( 'a' => array( 'href' => array() ) )
@@ -111,28 +111,28 @@ final class IssuePage {
 		$search = $this->current_search();
 		$users  = $this->users( $search );
 
-		echo '<h2>' . esc_html__( 'Award a badge by hand', 'open-badges-for-learndash' ) . '</h2>';
+		echo '<h2>' . esc_html__( 'Award a badge by hand', 'lxd-integral-microcredentials-for-learndash' ) . '</h2>';
 		echo '<p class="description">' . esc_html__(
 			'Choose a badge and one or more people. Anyone who already has the badge is skipped.',
-			'open-badges-for-learndash'
+			'lxd-integral-microcredentials-for-learndash'
 		) . '</p>';
 
 		// Plain GET form: a server-side search keeps the picker usable on a
 		// site with thousands of users without adding an AJAX endpoint.
 		echo '<form method="get" action="' . esc_url( admin_url( 'admin.php' ) ) . '">';
 		echo '<input type="hidden" name="page" value="' . esc_attr( self::SLUG ) . '" />';
-		echo '<p><label for="obld-user-search">' . esc_html__( 'Find people:', 'open-badges-for-learndash' ) . '</label> ';
-		echo '<input type="search" id="obld-user-search" name="user_search" value="' . esc_attr( $search ) . '" class="regular-text" placeholder="' . esc_attr__( 'name or email', 'open-badges-for-learndash' ) . '" /> ';
-		submit_button( __( 'Search', 'open-badges-for-learndash' ), 'secondary', '', false );
+		echo '<p><label for="obld-user-search">' . esc_html__( 'Find people:', 'lxd-integral-microcredentials-for-learndash' ) . '</label> ';
+		echo '<input type="search" id="obld-user-search" name="user_search" value="' . esc_attr( $search ) . '" class="regular-text" placeholder="' . esc_attr__( 'name or email', 'lxd-integral-microcredentials-for-learndash' ) . '" /> ';
+		submit_button( __( 'Search', 'lxd-integral-microcredentials-for-learndash' ), 'secondary', '', false );
 		if ( '' !== $search ) {
-			echo ' <a href="' . esc_url( self::url() ) . '">' . esc_html__( 'Clear', 'open-badges-for-learndash' ) . '</a>';
+			echo ' <a href="' . esc_url( self::url() ) . '">' . esc_html__( 'Clear', 'lxd-integral-microcredentials-for-learndash' ) . '</a>';
 		}
 		echo '</p></form>';
 
 		if ( array() === $users ) {
 			echo '<div class="notice notice-warning inline"><p>' . esc_html__(
 				'No matching users found.',
-				'open-badges-for-learndash'
+				'lxd-integral-microcredentials-for-learndash'
 			) . '</p></div>';
 			return;
 		}
@@ -142,7 +142,7 @@ final class IssuePage {
 		echo '<input type="hidden" name="action" value="' . esc_attr( self::MANUAL_ACTION ) . '" />';
 		echo '<table class="form-table" role="presentation"><tbody>';
 
-		echo '<tr><th scope="row"><label for="obld-manual-badge">' . esc_html__( 'Badge', 'open-badges-for-learndash' ) . '</label></th><td>';
+		echo '<tr><th scope="row"><label for="obld-manual-badge">' . esc_html__( 'Badge', 'lxd-integral-microcredentials-for-learndash' ) . '</label></th><td>';
 		echo '<select name="badge_id" id="obld-manual-badge">';
 		foreach ( $badges as $badge ) {
 			$provider = Provider::tryFrom( (string) $badge->provider );
@@ -158,7 +158,7 @@ final class IssuePage {
 		}
 		echo '</select></td></tr>';
 
-		echo '<tr><th scope="row"><label for="obld-manual-users">' . esc_html__( 'People', 'open-badges-for-learndash' ) . '</label></th><td>';
+		echo '<tr><th scope="row"><label for="obld-manual-users">' . esc_html__( 'People', 'lxd-integral-microcredentials-for-learndash' ) . '</label></th><td>';
 		echo '<select name="user_ids[]" id="obld-manual-users" multiple size="10" style="min-width:24rem;">';
 		foreach ( $users as $user ) {
 			printf(
@@ -168,20 +168,20 @@ final class IssuePage {
 			);
 		}
 		echo '</select>';
-		echo '<p class="description">' . esc_html__( 'Hold Ctrl (or Cmd) to select more than one.', 'open-badges-for-learndash' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Hold Ctrl (or Cmd) to select more than one.', 'lxd-integral-microcredentials-for-learndash' ) . '</p>';
 
 		if ( count( $users ) >= self::USER_LIMIT ) {
 			echo '<p class="description">' . esc_html(
 				sprintf(
 					/* translators: %d: maximum number of users listed. */
-					__( 'Only the first %d people are listed — use the search above to narrow it down.', 'open-badges-for-learndash' ),
+					__( 'Only the first %d people are listed — use the search above to narrow it down.', 'lxd-integral-microcredentials-for-learndash' ),
 					self::USER_LIMIT
 				)
 			) . '</p>';
 		}
 
 		echo '</td></tr></tbody></table>';
-		submit_button( __( 'Award badge', 'open-badges-for-learndash' ) );
+		submit_button( __( 'Award badge', 'lxd-integral-microcredentials-for-learndash' ) );
 		echo '</form>';
 	}
 
@@ -190,10 +190,10 @@ final class IssuePage {
 	 */
 	private function render_backfill_form(): void {
 		echo '<hr />';
-		echo '<h2>' . esc_html__( 'Backfill a trigger', 'open-badges-for-learndash' ) . '</h2>';
+		echo '<h2>' . esc_html__( 'Backfill a trigger', 'lxd-integral-microcredentials-for-learndash' ) . '</h2>';
 		echo '<p class="description">' . esc_html__(
 			'Award a trigger’s badge to everyone who already completed its item before the trigger existed. Anyone who already has the badge is skipped.',
-			'open-badges-for-learndash'
+			'lxd-integral-microcredentials-for-learndash'
 		) . '</p>';
 
 		$triggers = $this->triggers->all();
@@ -202,7 +202,7 @@ final class IssuePage {
 			echo '<p>' . wp_kses(
 				sprintf(
 					/* translators: %s: triggers page URL. */
-					__( 'No triggers exist yet. <a href="%s">Create one</a> first.', 'open-badges-for-learndash' ),
+					__( 'No triggers exist yet. <a href="%s">Create one</a> first.', 'lxd-integral-microcredentials-for-learndash' ),
 					esc_url( TriggersPage::url() )
 				),
 				array( 'a' => array( 'href' => array() ) )
@@ -214,7 +214,7 @@ final class IssuePage {
 		wp_nonce_field( self::BACKFILL_ACTION );
 		echo '<input type="hidden" name="action" value="' . esc_attr( self::BACKFILL_ACTION ) . '" />';
 		echo '<table class="form-table" role="presentation"><tbody>';
-		echo '<tr><th scope="row"><label for="obld-backfill-trigger">' . esc_html__( 'Trigger', 'open-badges-for-learndash' ) . '</label></th><td>';
+		echo '<tr><th scope="row"><label for="obld-backfill-trigger">' . esc_html__( 'Trigger', 'lxd-integral-microcredentials-for-learndash' ) . '</label></th><td>';
 		echo '<select name="trigger_id" id="obld-backfill-trigger">';
 
 		foreach ( $triggers as $trigger ) {
@@ -233,17 +233,17 @@ final class IssuePage {
 				esc_html(
 					sprintf(
 						/* translators: 1: badge name, 2: event label, 3: LearnDash item title. */
-						__( '%1$s — %2$s: %3$s', 'open-badges-for-learndash' ),
+						__( '%1$s — %2$s: %3$s', 'lxd-integral-microcredentials-for-learndash' ),
 						(string) $trigger->badge_name,
 						$event instanceof EventType ? $event->label() : (string) $trigger->event_type,
-						null === $item ? __( '(deleted item)', 'open-badges-for-learndash' ) : $item
+						null === $item ? __( '(deleted item)', 'lxd-integral-microcredentials-for-learndash' ) : $item
 					)
 				)
 			);
 		}
 
 		echo '</select></td></tr></tbody></table>';
-		submit_button( __( 'Run backfill', 'open-badges-for-learndash' ), 'secondary' );
+		submit_button( __( 'Run backfill', 'lxd-integral-microcredentials-for-learndash' ), 'secondary' );
 		echo '</form>';
 	}
 
@@ -366,7 +366,7 @@ final class IssuePage {
 	 */
 	private function authorize( string $action ): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'open-badges-for-learndash' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		check_admin_referer( $action );
@@ -396,12 +396,12 @@ final class IssuePage {
 		$code = isset( $_GET['obld_issue'] ) ? sanitize_key( wp_unslash( $_GET['obld_issue'] ) ) : '';
 
 		if ( 'err_badge' === $code ) {
-			$this->notice( 'error', __( 'Choose a synced, published badge to award.', 'open-badges-for-learndash' ) );
+			$this->notice( 'error', __( 'Choose a synced, published badge to award.', 'lxd-integral-microcredentials-for-learndash' ) );
 			return;
 		}
 
 		if ( 'err_users' === $code ) {
-			$this->notice( 'error', __( 'Choose at least one person to award the badge to.', 'open-badges-for-learndash' ) );
+			$this->notice( 'error', __( 'Choose at least one person to award the badge to.', 'lxd-integral-microcredentials-for-learndash' ) );
 			return;
 		}
 
@@ -413,7 +413,7 @@ final class IssuePage {
 				'error',
 				sprintf(
 					/* translators: %s: failure detail. */
-					__( 'The backfill could not run: %s', 'open-badges-for-learndash' ),
+					__( 'The backfill could not run: %s', 'lxd-integral-microcredentials-for-learndash' ),
 					$detail
 				)
 			);
@@ -434,7 +434,7 @@ final class IssuePage {
 			$failed > 0 ? 'warning' : 'success',
 			sprintf(
 				/* translators: 1: queued count, 2: skipped count, 3: failed count. */
-				__( '%1$d queued for issuing, %2$d skipped (already had the badge), %3$d could not be issued. Badges are sent in the background — check the Activity Log for the outcome of each.', 'open-badges-for-learndash' ),
+				__( '%1$d queued for issuing, %2$d skipped (already had the badge), %3$d could not be issued. Badges are sent in the background — check the Activity Log for the outcome of each.', 'lxd-integral-microcredentials-for-learndash' ),
 				$issued,
 				$skipped,
 				$failed
@@ -446,7 +446,7 @@ final class IssuePage {
 				'warning',
 				sprintf(
 					/* translators: %d: per-run ceiling. */
-					__( 'This run stopped at the %d-learner ceiling. Run the backfill again to continue where it left off.', 'open-badges-for-learndash' ),
+					__( 'This run stopped at the %d-learner ceiling. Run the backfill again to continue where it left off.', 'lxd-integral-microcredentials-for-learndash' ),
 					BulkIssuer::MAX_PER_RUN
 				)
 			);

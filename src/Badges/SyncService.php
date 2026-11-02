@@ -75,7 +75,7 @@ final class SyncService {
 	 */
 	private function sync_provider( Provider $provider ): array {
 		if ( ! $this->store->is_configured( $provider ) || $this->store->needs_reentry( $provider ) ) {
-			return $this->result( self::STATUS_SKIPPED, __( 'Not configured.', 'open-badges-for-learndash' ) );
+			return $this->result( self::STATUS_SKIPPED, __( 'Not configured.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		$client = new ApiClient(
@@ -112,7 +112,7 @@ final class SyncService {
 		$this->logger->success(
 			sprintf(
 				/* translators: 1: badge count, 2: provider name, 3: added count, 4: updated count, 5: removed count. */
-				__( 'Synced %1$d badges from %2$s (%3$d added, %4$d updated, %5$d removed).', 'open-badges-for-learndash' ),
+				__( 'Synced %1$d badges from %2$s (%3$d added, %4$d updated, %5$d removed).', 'lxd-integral-microcredentials-for-learndash' ),
 				$count,
 				$provider->label(),
 				$stats['added'],
@@ -128,7 +128,7 @@ final class SyncService {
 			$this->logger->error(
 				sprintf(
 					/* translators: 1: badge count, 2: provider name. */
-					__( '%1$d badge(s) used by triggers are no longer available at %2$s; the triggers were kept but cannot issue until the badge returns or the rule is changed.', 'open-badges-for-learndash' ),
+					__( '%1$d badge(s) used by triggers are no longer available at %2$s; the triggers were kept but cannot issue until the badge returns or the rule is changed.', 'lxd-integral-microcredentials-for-learndash' ),
 					(int) $stats['missing'],
 					$provider->label()
 				)
@@ -150,7 +150,7 @@ final class SyncService {
 		$this->logger->error(
 			sprintf(
 				/* translators: 1: provider name, 2: failure detail. */
-				__( 'Badge sync failed for %1$s: %2$s', 'open-badges-for-learndash' ),
+				__( 'Badge sync failed for %1$s: %2$s', 'lxd-integral-microcredentials-for-learndash' ),
 				$provider->label(),
 				$message
 			)

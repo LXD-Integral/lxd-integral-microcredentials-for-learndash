@@ -60,7 +60,7 @@ final class ActivityLogPage {
 	 */
 	public function render(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'open-badges-for-learndash' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		$outcome = $this->current_outcome();
@@ -71,16 +71,16 @@ final class ActivityLogPage {
 		$entries = $this->logger->entries( $outcome, self::PER_PAGE, ( $page - 1 ) * self::PER_PAGE );
 
 		echo '<div class="wrap">';
-		echo '<h1 class="wp-heading-inline">' . esc_html__( 'Activity Log', 'open-badges-for-learndash' ) . '</h1>';
+		echo '<h1 class="wp-heading-inline">' . esc_html__( 'Activity Log', 'lxd-integral-microcredentials-for-learndash' ) . '</h1>';
 
 		if ( $this->logger->count() > 0 ) {
 			echo ' <a href="' . esc_url( $this->action_url( self::EXPORT_ACTION ) ) . '" class="page-title-action">'
-				. esc_html__( 'Export CSV', 'open-badges-for-learndash' ) . '</a>';
+				. esc_html__( 'Export CSV', 'lxd-integral-microcredentials-for-learndash' ) . '</a>';
 			printf(
 				' <a href="%s" class="page-title-action" data-obld-confirm="%s">%s</a>',
 				esc_url( $this->action_url( self::CLEAR_ACTION ) ),
-				esc_attr( __( 'Delete every entry in the activity log? Issued badges and award records are not affected.', 'open-badges-for-learndash' ) ),
-				esc_html__( 'Clear Log', 'open-badges-for-learndash' )
+				esc_attr( __( 'Delete every entry in the activity log? Issued badges and award records are not affected.', 'lxd-integral-microcredentials-for-learndash' ) ),
+				esc_html__( 'Clear Log', 'lxd-integral-microcredentials-for-learndash' )
 			);
 		}
 
@@ -90,7 +90,7 @@ final class ActivityLogPage {
 		$this->render_filter( $outcome );
 
 		if ( array() === $entries ) {
-			echo '<p>' . esc_html__( 'Nothing logged yet.', 'open-badges-for-learndash' ) . '</p></div>';
+			echo '<p>' . esc_html__( 'Nothing logged yet.', 'lxd-integral-microcredentials-for-learndash' ) . '</p></div>';
 			return;
 		}
 
@@ -108,9 +108,9 @@ final class ActivityLogPage {
 	 */
 	private function render_filter( string $current ): void {
 		$options = array(
-			''              => __( 'All', 'open-badges-for-learndash' ),
-			Logger::SUCCESS => __( 'Successes', 'open-badges-for-learndash' ),
-			Logger::ERROR   => __( 'Errors', 'open-badges-for-learndash' ),
+			''              => __( 'All', 'lxd-integral-microcredentials-for-learndash' ),
+			Logger::SUCCESS => __( 'Successes', 'lxd-integral-microcredentials-for-learndash' ),
+			Logger::ERROR   => __( 'Errors', 'lxd-integral-microcredentials-for-learndash' ),
 		);
 
 		$links = array();
@@ -141,7 +141,7 @@ final class ActivityLogPage {
 		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html(
 			sprintf(
 				/* translators: %s: number of deleted log entries. */
-				_n( 'Cleared %s log entry.', 'Cleared %s log entries.', $count, 'open-badges-for-learndash' ),
+				_n( 'Cleared %s log entry.', 'Cleared %s log entries.', $count, 'lxd-integral-microcredentials-for-learndash' ),
 				number_format_i18n( $count )
 			)
 		) . '</p></div>';
@@ -200,13 +200,13 @@ final class ActivityLogPage {
 		self::write_csv_row(
 			$out,
 			array(
-				__( 'Date (UTC)', 'open-badges-for-learndash' ),
-				__( 'Outcome', 'open-badges-for-learndash' ),
-				__( 'Learner', 'open-badges-for-learndash' ),
-				__( 'Email', 'open-badges-for-learndash' ),
-				__( 'Badge', 'open-badges-for-learndash' ),
-				__( 'Trigger', 'open-badges-for-learndash' ),
-				__( 'Message', 'open-badges-for-learndash' ),
+				__( 'Date (UTC)', 'lxd-integral-microcredentials-for-learndash' ),
+				__( 'Outcome', 'lxd-integral-microcredentials-for-learndash' ),
+				__( 'Learner', 'lxd-integral-microcredentials-for-learndash' ),
+				__( 'Email', 'lxd-integral-microcredentials-for-learndash' ),
+				__( 'Badge', 'lxd-integral-microcredentials-for-learndash' ),
+				__( 'Trigger', 'lxd-integral-microcredentials-for-learndash' ),
+				__( 'Message', 'lxd-integral-microcredentials-for-learndash' ),
 			)
 		);
 
@@ -285,7 +285,7 @@ final class ActivityLogPage {
 	 */
 	private function authorize( string $action ): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'open-badges-for-learndash' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		check_admin_referer( $action );

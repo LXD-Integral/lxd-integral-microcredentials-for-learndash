@@ -87,6 +87,45 @@ final class ApiClientTest extends TestCase {
 		$this->assertStringContainsString( 'Could not resolve host', $result->get_error_message() );
 	}
 
+	public function test_short_lived_token_is_not_cached(): void {
+		$transport = new MockTransport();
+		$transport->queue_json( 200, array( 'access_token' => 'short-1', 'expires_in' => 30 ) );
+		$transport->queue_json( 200, array( 'success' => true ) );
+		$transport->queue_json( 200, array( 'access_token' => 'short-2', 'expires_in' => 60 ) );
+		$transport->queue_json( 200, array( 'success' => true ) );
+
+		$client = $this->client( $transport );
+
+		// With less than the renewal margin left, caching would need a TTL of
+		// zero, which WordPress treats as "never expires" — so no transient.
+		$this->assertTrue( $client->ping() );
+		$this->assertFalse( get_transient( 'obld_token_obf' ) );
+
+		// The next call fetches a fresh token instead of reusing the stale one.
+		$this->assertTrue( $client->ping() );
+		$this->assertCount( 4, $transport->requests );
+		$this->assertSame( 'Bearer short-2', $transport->requests[3]['args']['headers']['Authorization'] );
+	}
+
+	public function test_token_without_expires_in_is_not_cached(): void {
+		$transport = new MockTransport();
+		$transport->queue_json( 200, array( 'access_token' => 'tok', 'token_type' => 'bearer' ) );
+		$transport->queue_json( 200, array( 'success' => true ) );
+
+		$this->assertTrue( $this->client( $transport )->ping() );
+		$this->assertFalse( get_transient( 'obld_token_obf' ) );
+	}
+
+	public function test_long_lived_token_is_cached_with_renewal_margin(): void {
+		$transport = new MockTransport();
+		$transport->queue_json( 200, array( 'access_token' => 'tok', 'expires_in' => 18000 ) );
+		$transport->queue_json( 200, array( 'success' => true ) );
+
+		$this->assertTrue( $this->client( $transport )->ping() );
+		$this->assertSame( 'tok', get_transient( 'obld_token_obf' ) );
+		$this->assertSame( 18000 - 60, obld_test_transient_ttl( 'obld_token_obf' ) );
+	}
+
 	public function test_stale_cached_token_is_refreshed_once_on_401(): void {
 		set_transient( 'obld_token_obf', 'stale-token', 18000 );
 
