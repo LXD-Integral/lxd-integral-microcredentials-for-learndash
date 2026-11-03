@@ -1,6 +1,6 @@
 # Documentation
 
-User-facing documentation for **Open Badges for LearnDash**. Start with the main
+User-facing documentation for **LXD Integral Microcredentials for LearnDash**. Start with the main
 [README](../README.md) for requirements, installation, and initial setup; the material here
 expands on it.
 
@@ -9,4 +9,4 @@ expands on it.
 
 This folder ships inside the plugin release archive, so the copy you downloaded matches the
 plugin version you installed. The latest version is always at
-<https://github.com/LXD-Integral/open-badges-for-learndash/tree/master/docs>.
+<https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash/tree/master/docs>.

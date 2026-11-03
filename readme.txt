@@ -1,6 +1,6 @@
-=== Open Badges for LearnDash ===
+=== LXD Integral Microcredentials for LearnDash ===
 Contributors: lxdintegral
-Tags: open badges, learndash, badges, credentials, cancred
+Tags: open badges, learndash, badges, microcredentials, cancred
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
@@ -12,7 +12,7 @@ Automatically issue Open Badges to LearnDash learners through Open Badge Factory
 
 == Description ==
 
-Open Badges for LearnDash connects your LearnDash site to **Open Badge Factory** or **CanCred Factory** and issues real, verifiable Open Badges 3.0 credentials to learners automatically, with no Zapier or other external automation required.
+LXD Integral Microcredentials for LearnDash connects your LearnDash site to **Open Badge Factory** or **CanCred Factory** and issues real, verifiable Open Badges 3.0 credentials to learners automatically, with no Zapier or other external automation required. Open Badges are the standard format in which microcredentials (micro-credentials) are issued and shared.
 
 **What it does**
 
@@ -29,7 +29,7 @@ Open Badges for LearnDash connects your LearnDash site to **Open Badge Factory**
 
 **Independent plugin**
 
-Open Badges for LearnDash is developed and published independently by LXD Integral Learning Ltd. It is not affiliated with, supported by, or endorsed by Open Badge Factory, CanCred, Learning Agents, LearnDash, StellarWP, or 1EdTech. "LearnDash" is a trademark of its respective owner and is used only to describe which product this plugin works with. Open Badges is an open standard maintained by 1EdTech; the plugin issues badges that follow it through the providers above, and is not itself a 1EdTech product or certification.
+LXD Integral Microcredentials for LearnDash is developed and published independently by LXD Integral Learning Ltd. It is not affiliated with, supported by, or endorsed by Open Badge Factory, CanCred, Learning Agents, LearnDash, StellarWP, or 1EdTech. "LearnDash" is a trademark of its respective owner and is used only to describe which product this plugin works with. Open Badges is an open standard maintained by 1EdTech; the plugin issues badges that follow it through the providers above, and is not itself a 1EdTech product or certification.
 
 **Requirements**
 
@@ -56,7 +56,7 @@ Background work (issuing, retries, link fetching, status checks) runs through WP
 
 **Source code**
 
-The block editor script ships as compiled JavaScript in `build/`; its human-readable source is included in `blocks/` and in the public repository at [github.com/LXD-Integral/open-badges-for-learndash](https://github.com/LXD-Integral/open-badges-for-learndash). To rebuild it, run `npm install` and then `npm run build` in the plugin directory; the build uses `@wordpress/scripts`. The PHP needs no build step.
+The block editor script ships as compiled JavaScript in `build/`; its human-readable source is included in `blocks/` and in the public repository at [github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash](https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash). To rebuild it, run `npm install` and then `npm run build` in the plugin directory; the build uses `@wordpress/scripts`. The PHP needs no build step.
 
 == Installation ==
 

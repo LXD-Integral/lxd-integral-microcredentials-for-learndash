@@ -74,7 +74,7 @@ class ItemRepository {
 				'id'    => (int) $post->ID,
 				'title' => '' !== $title
 					/* translators: %d: post ID of an untitled LearnDash item. */
-					? $title : sprintf( __( '(untitled #%d)', 'open-badges-for-learndash' ), (int) $post->ID ),
+					? $title : sprintf( __( '(untitled #%d)', 'lxd-integral-microcredentials-for-learndash' ), (int) $post->ID ),
 			);
 		}
 
@@ -102,7 +102,7 @@ class ItemRepository {
 		$title = trim( (string) $post->post_title );
 
 		/* translators: %d: post ID of an untitled LearnDash item. */
-		return '' !== $title ? $title : sprintf( __( '(untitled #%d)', 'open-badges-for-learndash' ), $item_id );
+		return '' !== $title ? $title : sprintf( __( '(untitled #%d)', 'lxd-integral-microcredentials-for-learndash' ), $item_id );
 	}
 
 	/**

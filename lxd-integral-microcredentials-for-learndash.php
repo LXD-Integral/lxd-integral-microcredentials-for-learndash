@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name:       Open Badges for LearnDash
- * Plugin URI:        https://github.com/LXD-Integral/open-badges-for-learndash
+ * Plugin Name:       LXD Integral Microcredentials for LearnDash
+ * Plugin URI:        https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash
  * Description:       Automatically issue Open Badges to LearnDash learners via Open Badge Factory or CanCred.
  * Version:           1.0.0
  * Requires at least: 6.6
@@ -10,7 +10,7 @@
  * Author URI:        https://lxdintegral.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       open-badges-for-learndash
+ * Text Domain:       lxd-integral-microcredentials-for-learndash
  *
  * @package OBLD
  */

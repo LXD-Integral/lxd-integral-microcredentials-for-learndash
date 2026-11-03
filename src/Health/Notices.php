@@ -68,7 +68,7 @@ final class Notices {
 		if ( ! defined( 'LEARNDASH_VERSION' ) ) {
 			$notices['learndash_missing'] = array(
 				'type'        => 'warning',
-				'message'     => __( 'Open Badges for LearnDash: LearnDash is not active, so completion events cannot award badges. Settings can still be configured.', 'open-badges-for-learndash' ),
+				'message'     => __( 'LXD Integral Microcredentials for LearnDash: LearnDash is not active, so completion events cannot award badges. Settings can still be configured.', 'lxd-integral-microcredentials-for-learndash' ),
 				'dismissible' => true,
 			);
 		}
@@ -84,7 +84,7 @@ final class Notices {
 					'type'        => 'error',
 					'message'     => sprintf(
 						/* translators: 1: provider name, 2: settings page URL. */
-						__( 'Open Badges for LearnDash: the saved %1$s credentials can no longer be decrypted (the site’s security keys changed). <a href="%2$s">Re-enter the Client Secret</a>.', 'open-badges-for-learndash' ),
+						__( 'LXD Integral Microcredentials for LearnDash: the saved %1$s credentials can no longer be decrypted (the site’s security keys changed). <a href="%2$s">Re-enter the Client Secret</a>.', 'lxd-integral-microcredentials-for-learndash' ),
 						$provider->label(),
 						esc_url( SettingsPage::url() )
 					),
@@ -102,7 +102,7 @@ final class Notices {
 					'type'        => 'error',
 					'message'     => sprintf(
 						/* translators: 1: provider name, 2: failure detail, 3: badges page URL. */
-						__( 'Open Badges for LearnDash: the last %1$s badge sync failed — %2$s <a href="%3$s">Open the Badges screen to re-sync</a>.', 'open-badges-for-learndash' ),
+						__( 'LXD Integral Microcredentials for LearnDash: the last %1$s badge sync failed — %2$s <a href="%3$s">Open the Badges screen to re-sync</a>.', 'lxd-integral-microcredentials-for-learndash' ),
 						$provider->label(),
 						esc_html( (string) ( $sync_row['message'] ?? '' ) ),
 						esc_url( BadgesPage::url() )
@@ -117,7 +117,7 @@ final class Notices {
 					'type'        => 'error',
 					'message'     => sprintf(
 						/* translators: 1: provider name, 2: failure detail, 3: settings page URL. */
-						__( 'Open Badges for LearnDash: the %1$s connection is failing — %2$s <a href="%3$s">Review settings and re-test</a>.', 'open-badges-for-learndash' ),
+						__( 'LXD Integral Microcredentials for LearnDash: the %1$s connection is failing — %2$s <a href="%3$s">Review settings and re-test</a>.', 'lxd-integral-microcredentials-for-learndash' ),
 						$provider->label(),
 						esc_html( $status['message'] ),
 						esc_url( SettingsPage::url() )
@@ -141,7 +141,7 @@ final class Notices {
 				'type'        => 'error',
 				'message'     => sprintf(
 					/* translators: 1: comma-separated badge names, 2: triggers page URL. */
-					__( 'Open Badges for LearnDash: %1$s is used by a trigger but is no longer available at its provider, so that trigger cannot issue. <a href="%2$s">Review your triggers</a>.', 'open-badges-for-learndash' ),
+					__( 'LXD Integral Microcredentials for LearnDash: %1$s is used by a trigger but is no longer available at its provider, so that trigger cannot issue. <a href="%2$s">Review your triggers</a>.', 'lxd-integral-microcredentials-for-learndash' ),
 					esc_html( implode( ', ', $names ) ),
 					esc_url( TriggersPage::url() )
 				),
@@ -159,10 +159,10 @@ final class Notices {
 				'message'     => sprintf(
 					/* translators: 1: number of undelivered badges, 2: activity log URL. */
 					_n(
-						'Open Badges for LearnDash: %1$d badge could not be issued after repeated attempts and has been given up on. <a href="%2$s">Review the activity log</a>, fix the cause, then re-award it from Issue Badges.',
-						'Open Badges for LearnDash: %1$d badges could not be issued after repeated attempts and have been given up on. <a href="%2$s">Review the activity log</a>, fix the cause, then re-award them from Issue Badges.',
+						'LXD Integral Microcredentials for LearnDash: %1$d badge could not be issued after repeated attempts and has been given up on. <a href="%2$s">Review the activity log</a>, fix the cause, then re-award it from Issue Badges.',
+						'LXD Integral Microcredentials for LearnDash: %1$d badges could not be issued after repeated attempts and have been given up on. <a href="%2$s">Review the activity log</a>, fix the cause, then re-award them from Issue Badges.',
 						$abandoned,
-						'open-badges-for-learndash'
+						'lxd-integral-microcredentials-for-learndash'
 					),
 					$abandoned,
 					esc_url( ActivityLogPage::url( 'error' ) )
@@ -176,7 +176,7 @@ final class Notices {
 				'type'        => 'info',
 				'message'     => sprintf(
 					/* translators: %s: settings page URL. */
-					__( 'Open Badges for LearnDash is active but no badge provider is connected yet. <a href="%s">Add your Open Badge Factory or CanCred credentials</a>.', 'open-badges-for-learndash' ),
+					__( 'LXD Integral Microcredentials for LearnDash is active but no badge provider is connected yet. <a href="%s">Add your Open Badge Factory or CanCred credentials</a>.', 'lxd-integral-microcredentials-for-learndash' ),
 					esc_url( SettingsPage::url() )
 				),
 				'dismissible' => true,
@@ -220,7 +220,7 @@ final class Notices {
 					admin_url( 'admin-post.php?action=' . self::DISMISS_ACTION . '&notice=' . $key . '&hash=' . $hash ),
 					self::DISMISS_ACTION . '_' . $key
 				);
-				echo ' <a href="' . esc_url( $dismiss_url ) . '">' . esc_html__( 'Dismiss', 'open-badges-for-learndash' ) . '</a>';
+				echo ' <a href="' . esc_url( $dismiss_url ) . '">' . esc_html__( 'Dismiss', 'lxd-integral-microcredentials-for-learndash' ) . '</a>';
 			}
 			echo '</p></div>';
 		}
@@ -231,7 +231,7 @@ final class Notices {
 	 */
 	public function handle_dismiss(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'open-badges-for-learndash' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- verified on the next line, which needs this key.

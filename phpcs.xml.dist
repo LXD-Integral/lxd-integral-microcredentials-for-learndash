@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <ruleset name="OBLD">
-    <description>Coding standards for Open Badges for LearnDash.</description>
+    <description>Coding standards for LXD Integral Microcredentials for LearnDash.</description>
 
-    <file>open-badges-for-learndash.php</file>
+    <file>lxd-integral-microcredentials-for-learndash.php</file>
     <file>uninstall.php</file>
     <file>src</file>
 
@@ -24,7 +24,7 @@
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array">
-                <element value="open-badges-for-learndash"/>
+                <element value="lxd-integral-microcredentials-for-learndash"/>
             </property>
         </properties>
     </rule>

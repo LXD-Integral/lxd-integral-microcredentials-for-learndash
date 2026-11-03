@@ -1,4 +1,4 @@
-Open Badges for LearnDash changelog
+LXD Integral Microcredentials for LearnDash changelog
 ===================================
 
 The current release is described in readme.txt. This file keeps the full

@@ -100,12 +100,12 @@ final class BadgeList {
 			|| ( $config['user_id'] > 0 && get_current_user_id() === $config['user_id'] );
 
 		if ( $own_view ) {
-			PageCache::nocache( 'open-badges-for-learndash: viewer-specific badge list' );
+			PageCache::nocache( 'lxd-integral-microcredentials-for-learndash: viewer-specific badge list' );
 		}
 
 		if ( $config['user_id'] <= 0 ) {
 			return $this->message(
-				__( 'Sign in to see your badges.', 'open-badges-for-learndash' ),
+				__( 'Sign in to see your badges.', 'lxd-integral-microcredentials-for-learndash' ),
 				$wrapper
 			);
 		}
@@ -115,8 +115,8 @@ final class BadgeList {
 		if ( array() === $badges ) {
 			return $this->message(
 				$own_view
-					? __( 'No badges earned yet. Badges are awarded automatically as you complete courses, lessons, topics, or quizzes — a new badge can take a few minutes to appear here after you finish.', 'open-badges-for-learndash' )
-					: __( 'No badges earned yet.', 'open-badges-for-learndash' ),
+					? __( 'No badges earned yet. Badges are awarded automatically as you complete courses, lessons, topics, or quizzes — a new badge can take a few minutes to appear here after you finish.', 'lxd-integral-microcredentials-for-learndash' )
+					: __( 'No badges earned yet.', 'lxd-integral-microcredentials-for-learndash' ),
 				$wrapper
 			);
 		}
@@ -221,9 +221,9 @@ final class BadgeList {
 			esc_html(
 				$expired
 					/* translators: %s: expiry date. */
-					? sprintf( __( 'Expired %s', 'open-badges-for-learndash' ), $date )
+					? sprintf( __( 'Expired %s', 'lxd-integral-microcredentials-for-learndash' ), $date )
 					/* translators: %s: expiry date. */
-					: sprintf( __( 'Expires %s', 'open-badges-for-learndash' ), $date )
+					: sprintf( __( 'Expires %s', 'lxd-integral-microcredentials-for-learndash' ), $date )
 			)
 		);
 	}
@@ -279,13 +279,13 @@ final class BadgeList {
 		if ( $config['export'] && $is_owner ) {
 			if ( $in_passport ) {
 				$actions[] = '<span class="obld-earned-badges__action obld-earned-badges__action--saved">'
-					. esc_html__( 'Saved to Passport', 'open-badges-for-learndash' )
+					. esc_html__( 'Saved to Passport', 'lxd-integral-microcredentials-for-learndash' )
 					. ' <span aria-hidden="true">&#10003;</span></span>';
 			} elseif ( ! $expired && '' !== $receive_url ) {
 				$actions[] = sprintf(
 					'<a class="obld-earned-badges__action obld-earned-badges__action--save" href="%s" rel="noopener noreferrer" target="_blank">%s</a>',
 					esc_url( $receive_url ),
-					esc_html__( 'Save & share', 'open-badges-for-learndash' )
+					esc_html__( 'Save & share', 'lxd-integral-microcredentials-for-learndash' )
 				);
 			}
 		}
@@ -296,7 +296,7 @@ final class BadgeList {
 			$actions[] = sprintf(
 				'<a class="obld-earned-badges__action obld-earned-badges__action--verify" href="%s" rel="noopener noreferrer" target="_blank">%s</a>',
 				esc_url( '' === $validator ? $assertion_url : $validator ),
-				esc_html__( 'Verify', 'open-badges-for-learndash' )
+				esc_html__( 'Verify', 'lxd-integral-microcredentials-for-learndash' )
 			);
 		}
 

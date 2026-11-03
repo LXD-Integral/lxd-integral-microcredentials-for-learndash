@@ -1,7 +1,7 @@
 {
-	"name": "open-badges-for-learndash",
+	"name": "lxd-integral-microcredentials-for-learndash",
 	"version": "1.0.0",
-	"description": "Editor assets for the Open Badges for LearnDash earned-badges block.",
+	"description": "Editor assets for the LXD Integral Microcredentials for LearnDash earned-badges block.",
 	"license": "GPL-2.0-or-later",
 	"private": true,
 	"scripts": {

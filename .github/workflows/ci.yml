@@ -6,7 +6,7 @@ on:
   pull_request:
 
 env:
-  SLUG: open-badges-for-learndash
+  SLUG: lxd-integral-microcredentials-for-learndash
 
 jobs:
   lint-and-test:
@@ -61,7 +61,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "dist/$SLUG"
-          cp open-badges-for-learndash.php uninstall.php readme.txt changelog.txt README.md LICENSE "dist/$SLUG/"
+          cp lxd-integral-microcredentials-for-learndash.php uninstall.php readme.txt changelog.txt README.md LICENSE "dist/$SLUG/"
           cp -R src build blocks languages docs "dist/$SLUG/"
           test -f "dist/$SLUG/build/earned-badges/block.json"
           test -f "dist/$SLUG/languages/$SLUG.pot"
@@ -101,7 +101,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: plugin-zip
-          path: dist/open-badges-for-learndash.zip
+          path: dist/lxd-integral-microcredentials-for-learndash.zip
           if-no-files-found: error
 
   # Proves the archive activates and runs cleanly, with WP_DEBUG on, at both
@@ -151,8 +151,8 @@ jobs:
           wp core install --url=http://127.0.0.1:8080 --title=Test \
             --admin_user=admin --admin_password=pw --admin_email=test@example.com
           wp core version
-          wp plugin install ../open-badges-for-learndash.zip --activate
-          wp plugin list --name=open-badges-for-learndash --field=status | grep -qx active
+          wp plugin install ../lxd-integral-microcredentials-for-learndash.zip --activate
+          wp plugin list --name=lxd-integral-microcredentials-for-learndash --field=status | grep -qx active
 
       - name: Activation created the tables and loads without notices
         run: |
@@ -171,7 +171,7 @@ jobs:
           wp eval 'echo WP_Block_Type_Registry::get_instance()->is_registered( "obld/earned-badges" ) ? "block ok\n" : "block FAILED\n";' | grep -q "block ok"
           # Every script the compiled block depends on must exist in this
           # WordPress, or the block silently never reaches the inserter.
-          wp eval '$asset = include WP_PLUGIN_DIR . "/open-badges-for-learndash/build/earned-badges/index.asset.php";
+          wp eval '$asset = include WP_PLUGIN_DIR . "/lxd-integral-microcredentials-for-learndash/build/earned-badges/index.asset.php";
             foreach ( $asset["dependencies"] as $handle ) {
               if ( ! wp_script_is( $handle, "registered" ) ) { echo "missing script dependency: $handle\n"; exit( 1 ); }
             } echo "block script dependencies ok\n";'
@@ -191,12 +191,12 @@ jobs:
           for i in $(seq 1 30); do curl -s -o /dev/null http://127.0.0.1:8080/ && break; sleep 1; done
           ../bin/wp-debug-crawl.sh http://127.0.0.1:8080 admin pw "/?page_id=$shortcode" "/?page_id=$block"
           wp option update obld_delete_data_on_uninstall 1
-          wp plugin deactivate open-badges-for-learndash
-          wp plugin uninstall open-badges-for-learndash
+          wp plugin deactivate lxd-integral-microcredentials-for-learndash
+          wp plugin uninstall lxd-integral-microcredentials-for-learndash
           echo "--- debug.log ---"
           touch wp-content/debug.log && cat wp-content/debug.log
           # Match the plugin's install path only: the runner's checkout directory
           # shares the slug, so core's own deprecations would otherwise match.
-          if grep -E 'PHP (Warning|Notice|Deprecated|Fatal|Parse)' wp-content/debug.log | grep -q '/wp-content/plugins/open-badges-for-learndash/'; then
+          if grep -E 'PHP (Warning|Notice|Deprecated|Fatal|Parse)' wp-content/debug.log | grep -q '/wp-content/plugins/lxd-integral-microcredentials-for-learndash/'; then
             echo "The plugin logged PHP notices with WP_DEBUG on."; exit 1
           fi

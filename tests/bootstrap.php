@@ -23,6 +23,7 @@ require_once dirname( __DIR__ ) . '/vendor/autoload.php';
 
 $GLOBALS['obld_test_options']    = array();
 $GLOBALS['obld_test_transients'] = array();
+$GLOBALS['obld_test_transient_ttls'] = array();
 $GLOBALS['obld_test_salts']      = array(
 	'auth'        => 'test-auth-salt',
 	'secure_auth' => 'test-secure-auth-salt',
@@ -40,6 +41,7 @@ $GLOBALS['obld_test_fired']      = array();
 function obld_test_reset(): void {
 	$GLOBALS['obld_test_options']    = array();
 	$GLOBALS['obld_test_transients'] = array();
+	$GLOBALS['obld_test_transient_ttls'] = array();
 	$GLOBALS['obld_test_salts']      = array(
 		'auth'        => 'test-auth-salt',
 		'secure_auth' => 'test-secure-auth-salt',
@@ -110,8 +112,14 @@ function get_transient( string $key ): mixed {
 }
 
 function set_transient( string $key, mixed $value, int $expiration = 0 ): bool {
-	$GLOBALS['obld_test_transients'][ $key ] = $value;
+	$GLOBALS['obld_test_transients'][ $key ]     = $value;
+	$GLOBALS['obld_test_transient_ttls'][ $key ] = $expiration;
 	return true;
+}
+
+/** Expiration passed to the last set_transient() for $key, or null if never set. */
+function obld_test_transient_ttl( string $key ): ?int {
+	return $GLOBALS['obld_test_transient_ttls'][ $key ] ?? null;
 }
 
 function delete_transient( string $key ): bool {

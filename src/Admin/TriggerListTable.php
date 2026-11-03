@@ -58,12 +58,12 @@ final class TriggerListTable extends \WP_List_Table {
 	 */
 	public function get_columns(): array {
 		return array(
-			'badge'       => __( 'Badge', 'open-badges-for-learndash' ),
-			'event'       => __( 'When', 'open-badges-for-learndash' ),
-			'item'        => __( 'LearnDash item', 'open-badges-for-learndash' ),
-			'min_score'   => __( 'Min. score', 'open-badges-for-learndash' ),
-			'status'      => __( 'Status', 'open-badges-for-learndash' ),
-			'fired_count' => __( 'Times fired', 'open-badges-for-learndash' ),
+			'badge'       => __( 'Badge', 'lxd-integral-microcredentials-for-learndash' ),
+			'event'       => __( 'When', 'lxd-integral-microcredentials-for-learndash' ),
+			'item'        => __( 'LearnDash item', 'lxd-integral-microcredentials-for-learndash' ),
+			'min_score'   => __( 'Min. score', 'lxd-integral-microcredentials-for-learndash' ),
+			'status'      => __( 'Status', 'lxd-integral-microcredentials-for-learndash' ),
+			'fired_count' => __( 'Times fired', 'lxd-integral-microcredentials-for-learndash' ),
 		);
 	}
 
@@ -91,7 +91,7 @@ final class TriggerListTable extends \WP_List_Table {
 	 * Message shown when no triggers exist yet.
 	 */
 	public function no_items(): void {
-		esc_html_e( 'No triggers yet — add one below to start awarding badges on completion.', 'open-badges-for-learndash' );
+		esc_html_e( 'No triggers yet — add one below to start awarding badges on completion.', 'lxd-integral-microcredentials-for-learndash' );
 	}
 
 	/**
@@ -101,9 +101,9 @@ final class TriggerListTable extends \WP_List_Table {
 	 */
 	public function column_badge( object $item ): string {
 		if ( null === $item->badge_name ) {
-			$cell = '<strong>' . esc_html__( 'Badge no longer available', 'open-badges-for-learndash' ) . '</strong>'
+			$cell = '<strong>' . esc_html__( 'Badge no longer available', 'lxd-integral-microcredentials-for-learndash' ) . '</strong>'
 				. '<br /><span class="obld-warning">'
-				. esc_html__( 'This badge was removed locally. The trigger cannot issue — delete it or re-sync your badges.', 'open-badges-for-learndash' )
+				. esc_html__( 'This badge was removed locally. The trigger cannot issue — delete it or re-sync your badges.', 'lxd-integral-microcredentials-for-learndash' )
 				. '</span>';
 		} else {
 			$provider = Provider::tryFrom( (string) $item->badge_provider );
@@ -124,7 +124,7 @@ final class TriggerListTable extends \WP_List_Table {
 
 			if ( ! empty( $item->badge_missing_at_provider ) ) {
 				$cell .= '<br /><span class="obld-warning">'
-					. esc_html__( 'No longer available at the provider — this trigger cannot issue until it returns.', 'open-badges-for-learndash' )
+					. esc_html__( 'No longer available at the provider — this trigger cannot issue until it returns.', 'lxd-integral-microcredentials-for-learndash' )
 					. '</span>';
 			}
 		}
@@ -152,7 +152,7 @@ final class TriggerListTable extends \WP_List_Table {
 		$title = $this->item_repo->title( (int) $item->target_id );
 
 		if ( null === $title ) {
-			return '<span class="obld-warning">' . esc_html__( 'Item deleted — this trigger cannot fire.', 'open-badges-for-learndash' ) . '</span>';
+			return '<span class="obld-warning">' . esc_html__( 'Item deleted — this trigger cannot fire.', 'lxd-integral-microcredentials-for-learndash' ) . '</span>';
 		}
 
 		$event = EventType::tryFrom( (string) $item->event_type );
@@ -178,7 +178,7 @@ final class TriggerListTable extends \WP_List_Table {
 		return esc_html(
 			sprintf(
 				/* translators: %s: percentage, e.g. "80". */
-				__( '%s%%', 'open-badges-for-learndash' ),
+				__( '%s%%', 'lxd-integral-microcredentials-for-learndash' ),
 				// Trailing zeros from DECIMAL(5,2) read as noise ("80.00%").
 				rtrim( rtrim( number_format( (float) $item->min_score, 2 ), '0' ), '.' )
 			)
@@ -192,10 +192,10 @@ final class TriggerListTable extends \WP_List_Table {
 	 */
 	public function column_status( object $item ): string {
 		if ( empty( $item->enabled ) ) {
-			return '<span class="description">' . esc_html__( 'Disabled', 'open-badges-for-learndash' ) . '</span>';
+			return '<span class="description">' . esc_html__( 'Disabled', 'lxd-integral-microcredentials-for-learndash' ) . '</span>';
 		}
 
-		return '<strong>' . esc_html__( 'Enabled', 'open-badges-for-learndash' ) . '</strong>';
+		return '<strong>' . esc_html__( 'Enabled', 'lxd-integral-microcredentials-for-learndash' ) . '</strong>';
 	}
 
 	/**
@@ -217,8 +217,8 @@ final class TriggerListTable extends \WP_List_Table {
 	private function actions_for( object $item ): array {
 		$id     = (int) $item->id;
 		$toggle = empty( $item->enabled )
-			? __( 'Enable', 'open-badges-for-learndash' )
-			: __( 'Disable', 'open-badges-for-learndash' );
+			? __( 'Enable', 'lxd-integral-microcredentials-for-learndash' )
+			: __( 'Disable', 'lxd-integral-microcredentials-for-learndash' );
 
 		return array(
 			'toggle' => sprintf(
@@ -229,8 +229,8 @@ final class TriggerListTable extends \WP_List_Table {
 			'delete' => sprintf(
 				'<a href="%s" class="submitdelete" data-obld-confirm="%s">%s</a>',
 				esc_url( TriggersPage::action_url( TriggersPage::DELETE_ACTION, $id ) ),
-				esc_attr( __( 'Delete this trigger? Badges already awarded are not affected.', 'open-badges-for-learndash' ) ),
-				esc_html__( 'Delete', 'open-badges-for-learndash' )
+				esc_attr( __( 'Delete this trigger? Badges already awarded are not affected.', 'lxd-integral-microcredentials-for-learndash' ) ),
+				esc_html__( 'Delete', 'lxd-integral-microcredentials-for-learndash' )
 			),
 		);
 	}

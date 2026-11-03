@@ -170,14 +170,14 @@ class IssuanceService {
 			$abandoned
 				? sprintf(
 					/* translators: 1: badge name, 2: attempt count, 3: failure detail. */
-					__( 'Gave up issuing “%1$s” after %2$d attempts: %3$s', 'open-badges-for-learndash' ),
+					__( 'Gave up issuing “%1$s” after %2$d attempts: %3$s', 'lxd-integral-microcredentials-for-learndash' ),
 					(string) $award->badge_name,
 					$attempts,
 					$failure
 				)
 				: sprintf(
 					/* translators: 1: badge name, 2: attempt number, 3: failure detail. */
-					__( 'Attempt %2$d to issue “%1$s” failed, will retry: %3$s', 'open-badges-for-learndash' ),
+					__( 'Attempt %2$d to issue “%1$s” failed, will retry: %3$s', 'lxd-integral-microcredentials-for-learndash' ),
 					(string) $award->badge_name,
 					$attempts,
 					$failure
@@ -209,13 +209,13 @@ class IssuanceService {
 		if ( ! $provider instanceof Provider || '' === (string) $award->badge_provider_badge_id ) {
 			// The badge row is gone or was never resolvable — retrying cannot
 			// help, so burn the attempts immediately rather than looping.
-			return __( 'the badge is no longer available locally.', 'open-badges-for-learndash' );
+			return __( 'the badge is no longer available locally.', 'lxd-integral-microcredentials-for-learndash' );
 		}
 
 		if ( ! $this->store->is_configured( $provider ) || $this->store->needs_reentry( $provider ) ) {
 			return sprintf(
 				/* translators: %s: provider name. */
-				__( '%s is not configured, so the badge could not be issued.', 'open-badges-for-learndash' ),
+				__( '%s is not configured, so the badge could not be issued.', 'lxd-integral-microcredentials-for-learndash' ),
 				$provider->label()
 			);
 		}
@@ -252,7 +252,7 @@ class IssuanceService {
 		$this->logger->success(
 			sprintf(
 				/* translators: 1: badge name, 2: recipient email. */
-				__( 'Issued “%1$s” to %2$s.', 'open-badges-for-learndash' ),
+				__( 'Issued “%1$s” to %2$s.', 'lxd-integral-microcredentials-for-learndash' ),
 				(string) $award->badge_name,
 				(string) $award->recipient_email
 			),
@@ -299,7 +299,7 @@ class IssuanceService {
 				$this->logger->error(
 					sprintf(
 						/* translators: 1: recipient email, 2: failure detail. */
-						__( 'The badge was issued, but its share links could not be fetched for %1$s (will retry hourly): %2$s', 'open-badges-for-learndash' ),
+						__( 'The badge was issued, but its share links could not be fetched for %1$s (will retry hourly): %2$s', 'lxd-integral-microcredentials-for-learndash' ),
 						$email,
 						$recipients->get_error_message()
 					)

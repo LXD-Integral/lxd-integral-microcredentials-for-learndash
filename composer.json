@@ -1,5 +1,5 @@
 {
-    "name": "lxd-integral/open-badges-for-learndash",
+    "name": "lxd-integral/microcredentials-for-learndash",
     "description": "Issue Open Badges to LearnDash learners via Open Badge Factory or CanCred.",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",

@@ -47,11 +47,11 @@ final class BadgeListTable extends \WP_List_Table {
 	 */
 	public function get_columns(): array {
 		return array(
-			'image'       => __( 'Image', 'open-badges-for-learndash' ),
-			'name'        => __( 'Name', 'open-badges-for-learndash' ),
-			'description' => __( 'Description', 'open-badges-for-learndash' ),
-			'provider'    => __( 'Provider', 'open-badges-for-learndash' ),
-			'synced_at'   => __( 'Last synced', 'open-badges-for-learndash' ),
+			'image'       => __( 'Image', 'lxd-integral-microcredentials-for-learndash' ),
+			'name'        => __( 'Name', 'lxd-integral-microcredentials-for-learndash' ),
+			'description' => __( 'Description', 'lxd-integral-microcredentials-for-learndash' ),
+			'provider'    => __( 'Provider', 'lxd-integral-microcredentials-for-learndash' ),
+			'synced_at'   => __( 'Last synced', 'lxd-integral-microcredentials-for-learndash' ),
 		);
 	}
 
@@ -101,7 +101,7 @@ final class BadgeListTable extends \WP_List_Table {
 		$name = '<strong>' . esc_html( $item->name ) . '</strong>';
 
 		if ( ! empty( $item->is_draft ) ) {
-			$name .= ' <span style="color:#787c82;">— ' . esc_html__( 'Draft', 'open-badges-for-learndash' ) . '</span>';
+			$name .= ' <span style="color:#787c82;">— ' . esc_html__( 'Draft', 'lxd-integral-microcredentials-for-learndash' ) . '</span>';
 		}
 
 		return $name;
@@ -141,7 +141,7 @@ final class BadgeListTable extends \WP_List_Table {
 
 		return sprintf(
 			/* translators: %s: human-readable time difference, e.g. "2 mins". */
-			esc_html__( '%s ago', 'open-badges-for-learndash' ),
+			esc_html__( '%s ago', 'lxd-integral-microcredentials-for-learndash' ),
 			esc_html( human_time_diff( $timestamp ) )
 		);
 	}

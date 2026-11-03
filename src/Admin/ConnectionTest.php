@@ -52,7 +52,7 @@ final class ConnectionTest {
 	 */
 	public function handle(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'open-badges-for-learndash' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		$provider = isset( $_GET['provider'] )
@@ -60,7 +60,7 @@ final class ConnectionTest {
 			: null;
 
 		if ( ! $provider instanceof Provider ) {
-			wp_die( esc_html__( 'Unknown provider.', 'open-badges-for-learndash' ) );
+			wp_die( esc_html__( 'Unknown provider.', 'lxd-integral-microcredentials-for-learndash' ) );
 		}
 
 		check_admin_referer( self::ACTION . '_' . $provider->value );
@@ -78,14 +78,14 @@ final class ConnectionTest {
 	 */
 	public function run_test( Provider $provider ): void {
 		if ( $this->store->needs_reentry( $provider ) ) {
-			$message = __( 'The saved Client Secret can no longer be decrypted (the site’s security keys changed). Re-enter the credentials.', 'open-badges-for-learndash' );
+			$message = __( 'The saved Client Secret can no longer be decrypted (the site’s security keys changed). Re-enter the credentials.', 'lxd-integral-microcredentials-for-learndash' );
 			ConnectionStatus::record( $provider, ConnectionStatus::FAILED, $message );
 			$this->logger->error( $provider->label() . ': ' . $message );
 			return;
 		}
 
 		if ( ! $this->store->is_configured( $provider ) ) {
-			$message = __( 'Client ID and Client Secret are not both set.', 'open-badges-for-learndash' );
+			$message = __( 'Client ID and Client Secret are not both set.', 'lxd-integral-microcredentials-for-learndash' );
 			ConnectionStatus::record( $provider, ConnectionStatus::NOT_CONFIGURED, $message );
 			return;
 		}
@@ -104,7 +104,7 @@ final class ConnectionTest {
 			$this->logger->success(
 				sprintf(
 					/* translators: %s: provider name. */
-					__( 'Connection test succeeded for %s.', 'open-badges-for-learndash' ),
+					__( 'Connection test succeeded for %s.', 'lxd-integral-microcredentials-for-learndash' ),
 					$provider->label()
 				)
 			);
@@ -115,7 +115,7 @@ final class ConnectionTest {
 		$this->logger->error(
 			sprintf(
 				/* translators: 1: provider name, 2: failure detail. */
-				__( 'Connection test failed for %1$s: %2$s', 'open-badges-for-learndash' ),
+				__( 'Connection test failed for %1$s: %2$s', 'lxd-integral-microcredentials-for-learndash' ),
 				$provider->label(),
 				$result->get_error_message()
 			)

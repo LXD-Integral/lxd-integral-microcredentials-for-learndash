@@ -63,7 +63,7 @@ final class PageCache {
 		self::$purged = true;
 
 		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- LiteSpeed Cache's public API.
-		do_action( 'litespeed_purge_all', 'open-badges-for-learndash: badge issued' );
+		do_action( 'litespeed_purge_all', 'lxd-integral-microcredentials-for-learndash: badge issued' );
 	}
 
 	/**

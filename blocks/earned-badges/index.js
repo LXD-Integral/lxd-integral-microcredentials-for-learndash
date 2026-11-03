@@ -22,16 +22,16 @@ registerBlockType( metadata.name, {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title={ __( 'Layout', 'open-badges-for-learndash' ) }>
+					<PanelBody title={ __( 'Layout', 'lxd-integral-microcredentials-for-learndash' ) }>
 						<RangeControl
-							label={ __( 'Columns', 'open-badges-for-learndash' ) }
+							label={ __( 'Columns', 'lxd-integral-microcredentials-for-learndash' ) }
 							value={ attributes.columns }
 							onChange={ ( columns ) => setAttributes( { columns } ) }
 							min={ 1 }
 							max={ 6 }
 						/>
 						<RangeControl
-							label={ __( 'Badge size (px)', 'open-badges-for-learndash' ) }
+							label={ __( 'Badge size (px)', 'lxd-integral-microcredentials-for-learndash' ) }
 							value={ attributes.size }
 							onChange={ ( size ) => setAttributes( { size } ) }
 							min={ 32 }
@@ -39,24 +39,24 @@ registerBlockType( metadata.name, {
 							step={ 8 }
 						/>
 						<ToggleControl
-							label={ __( 'Show badge names', 'open-badges-for-learndash' ) }
+							label={ __( 'Show badge names', 'lxd-integral-microcredentials-for-learndash' ) }
 							checked={ attributes.showName }
 							onChange={ ( showName ) => setAttributes( { showName } ) }
 						/>
 						<ToggleControl
-							label={ __( 'Link badge images', 'open-badges-for-learndash' ) }
+							label={ __( 'Link badge images', 'lxd-integral-microcredentials-for-learndash' ) }
 							checked={ attributes.link }
 							onChange={ ( link ) => setAttributes( { link } ) }
 						/>
 						<ToggleControl
-							label={ __( '“Save & share” link (badge owner only)', 'open-badges-for-learndash' ) }
-							help={ __( 'Links to the provider page where the owner can save the badge to their Passport or download it.', 'open-badges-for-learndash' ) }
+							label={ __( '“Save & share” link (badge owner only)', 'lxd-integral-microcredentials-for-learndash' ) }
+							help={ __( 'Links to the provider page where the owner can save the badge to their Passport or download it.', 'lxd-integral-microcredentials-for-learndash' ) }
 							checked={ attributes.showExport }
 							onChange={ ( showExport ) => setAttributes( { showExport } ) }
 						/>
 						<ToggleControl
-							label={ __( '“Verify” link', 'open-badges-for-learndash' ) }
-							help={ __( 'Links to the hosted Open Badges assertion, visible to all visitors.', 'open-badges-for-learndash' ) }
+							label={ __( '“Verify” link', 'lxd-integral-microcredentials-for-learndash' ) }
+							help={ __( 'Links to the hosted Open Badges assertion, visible to all visitors.', 'lxd-integral-microcredentials-for-learndash' ) }
 							checked={ attributes.showVerify }
 							onChange={ ( showVerify ) => setAttributes( { showVerify } ) }
 						/>

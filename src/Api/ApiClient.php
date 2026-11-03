@@ -30,6 +30,10 @@ final class ApiClient {
 	/**
 	 * Identifies this integration to the provider (required by the v2 issue endpoint).
 	 */
+	// Stamped on every issuing event and used to filter the recipient listing
+	// that StatusSync reads back. It is a stable provider-side key, deliberately
+	// decoupled from the plugin slug: changing it would hide every credential
+	// issued before the change from status sync. Never rename it.
 	public const API_CONSUMER_ID = 'open-badges-for-learndash';
 
 	/**
@@ -81,7 +85,7 @@ final class ApiClient {
 			'obld_unexpected_response',
 			sprintf(
 				/* translators: 1: provider name, 2: HTTP status code. */
-				__( '%1$s answered the connection test with an unexpected response (HTTP %2$d). The credentials may lack API access.', 'open-badges-for-learndash' ),
+				__( '%1$s answered the connection test with an unexpected response (HTTP %2$d). The credentials may lack API access.', 'lxd-integral-microcredentials-for-learndash' ),
 				$this->provider->label(),
 				$result['code']
 			)
@@ -128,7 +132,7 @@ final class ApiClient {
 					'obld_unexpected_response',
 					sprintf(
 						/* translators: %s: provider name. */
-						__( '%s returned an unexpected badge-list format.', 'open-badges-for-learndash' ),
+						__( '%s returned an unexpected badge-list format.', 'lxd-integral-microcredentials-for-learndash' ),
 						$this->provider->label()
 					)
 				);
@@ -198,9 +202,9 @@ final class ApiClient {
 				'obld_issue_failed',
 				sprintf(
 					/* translators: 1: provider name, 2: provider message. */
-					__( '%1$s did not issue the badge: %2$s', 'open-badges-for-learndash' ),
+					__( '%1$s did not issue the badge: %2$s', 'lxd-integral-microcredentials-for-learndash' ),
 					$this->provider->label(),
-					is_array( $data ) && ! empty( $data['message'] ) ? (string) $data['message'] : __( 'no reason given.', 'open-badges-for-learndash' )
+					is_array( $data ) && ! empty( $data['message'] ) ? (string) $data['message'] : __( 'no reason given.', 'lxd-integral-microcredentials-for-learndash' )
 				)
 			);
 		}
@@ -246,7 +250,7 @@ final class ApiClient {
 				'obld_unexpected_response',
 				sprintf(
 					/* translators: %s: provider name. */
-					__( '%s returned an unexpected recipient-list format.', 'open-badges-for-learndash' ),
+					__( '%s returned an unexpected recipient-list format.', 'lxd-integral-microcredentials-for-learndash' ),
 					$this->provider->label()
 				)
 			);
@@ -298,7 +302,7 @@ final class ApiClient {
 					'obld_unexpected_response',
 					sprintf(
 						/* translators: %s: provider name. */
-						__( '%s returned an unexpected recipient-list format.', 'open-badges-for-learndash' ),
+						__( '%s returned an unexpected recipient-list format.', 'lxd-integral-microcredentials-for-learndash' ),
 						$this->provider->label()
 					)
 				);
@@ -412,7 +416,7 @@ final class ApiClient {
 					'obld_auth_failed',
 					sprintf(
 						/* translators: %s: provider name. */
-						__( '%s rejected the credentials. Check the Client ID and Client Secret, and confirm the account has API access (Pro subscription).', 'open-badges-for-learndash' ),
+						__( '%s rejected the credentials. Check the Client ID and Client Secret, and confirm the account has API access (Pro subscription).', 'lxd-integral-microcredentials-for-learndash' ),
 						$this->provider->label()
 					)
 				);
@@ -421,12 +425,17 @@ final class ApiClient {
 			return $this->api_error( $result );
 		}
 
-		$expires_in = max( 60, (int) ( $data['expires_in'] ?? 0 ) );
+		$token = (string) $data['access_token'];
 
-		// Renew a minute early so a token never dies mid-request.
-		set_transient( self::token_transient_key( $this->provider ), (string) $data['access_token'], $expires_in - 60 );
+		// Cache the token, renewing a minute early so it never dies mid-request.
+		// A token that lives 60 seconds or less (or has no expires_in) is used
+		// once and not cached: a TTL of 0 would make the transient permanent.
+		$ttl = (int) ( $data['expires_in'] ?? 0 ) - MINUTE_IN_SECONDS;
+		if ( $ttl > 0 ) {
+			set_transient( self::token_transient_key( $this->provider ), $token, $ttl );
+		}
 
-		return (string) $data['access_token'];
+		return $token;
 	}
 
 	/**
@@ -439,7 +448,7 @@ final class ApiClient {
 			'obld_unreachable',
 			sprintf(
 				/* translators: 1: provider name, 2: transport error detail. */
-				__( 'Could not reach %1$s: %2$s', 'open-badges-for-learndash' ),
+				__( 'Could not reach %1$s: %2$s', 'lxd-integral-microcredentials-for-learndash' ),
 				$this->provider->label(),
 				$error->get_error_message()
 			)
@@ -459,7 +468,7 @@ final class ApiClient {
 			'obld_api_error',
 			sprintf(
 				/* translators: 1: provider name, 2: HTTP status code, 3: provider error detail. */
-				__( '%1$s returned an error (HTTP %2$d). %3$s', 'open-badges-for-learndash' ),
+				__( '%1$s returned an error (HTTP %2$d). %3$s', 'lxd-integral-microcredentials-for-learndash' ),
 				$this->provider->label(),
 				$result['code'],
 				$detail
