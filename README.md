@@ -47,7 +47,7 @@ Factory, CanCred, LearnDash, or StellarWP.
 
 Install it from the WordPress plugin directory (**Plugins → Add New**, search for "Open Badges for
 LearnDash"), or download the zip attached to the latest entry on the
-[Releases page](https://github.com/LXD-Integral/open-badges-for-learndash/releases) and install it
+[Releases page](https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash/releases) and install it
 through **Plugins → Add New → Upload Plugin**. The archive contains only runtime files — no
 development dependencies, tests, or build tooling. (Development builds are also available as the
 `plugin-zip` artifact of any CI run.)

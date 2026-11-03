@@ -56,7 +56,7 @@ Background work (issuing, retries, link fetching, status checks) runs through WP
 
 **Source code**
 
-The block editor script ships as compiled JavaScript in `build/`; its human-readable source is included in `blocks/` and in the public repository at [github.com/LXD-Integral/open-badges-for-learndash](https://github.com/LXD-Integral/open-badges-for-learndash). To rebuild it, run `npm install` and then `npm run build` in the plugin directory; the build uses `@wordpress/scripts`. The PHP needs no build step.
+The block editor script ships as compiled JavaScript in `build/`; its human-readable source is included in `blocks/` and in the public repository at [github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash](https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash). To rebuild it, run `npm install` and then `npm run build` in the plugin directory; the build uses `@wordpress/scripts`. The PHP needs no build step.
 
 == Installation ==
 

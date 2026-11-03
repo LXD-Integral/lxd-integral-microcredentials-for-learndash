@@ -9,4 +9,4 @@ expands on it.
 
 This folder ships inside the plugin release archive, so the copy you downloaded matches the
 plugin version you installed. The latest version is always at
-<https://github.com/LXD-Integral/open-badges-for-learndash/tree/master/docs>.
+<https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash/tree/master/docs>.
