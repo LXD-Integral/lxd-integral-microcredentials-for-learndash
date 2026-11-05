@@ -14,6 +14,10 @@ Key background lives in `dan-docs/` — Dan's personal reference, deliberately u
 - `dan-docs/activity-log/` — one entry per working session.
 - `dan-docs/reference/obf-openapi-v2-202602.yaml` — the pulled OBF API v2 OpenAPI spec.
 
+Dan's cross-client kanban: `kb` works from here under `KB_SCOPE=CLIENT/PROJECT` (set in
+`.claude/settings.local.json`); the store is `~/Desktop/LXD-kanban-board/`, whose `README.md` and
+`onboarding.md` are the convention. The `/kb` skill picks up, closes and proposes cards.
+
 ## Release and WordPress.org
 
 `readme.txt` is the WordPress.org listing (header, description, FAQ, changelog); `README.md` is
