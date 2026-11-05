@@ -5,9 +5,13 @@ microcredentials) to LearnDash learners
 through [Open Badge Factory](https://openbadgefactory.com) or [CanCred](https://cancred.ca)
 (Open Badge Factory API v2) — no Zapier or other external automation required.
 
-**Status: 1.0.0, submitted to the WordPress.org plugin directory.** Developed and published
-independently by LXD Integral Learning Ltd.; not affiliated with or endorsed by Open Badge
-Factory, CanCred, LearnDash, or StellarWP.
+[![WordPress plugin version](https://img.shields.io/wordpress/plugin/v/lxd-integral-microcredentials-for-learndash?label=WordPress.org)](https://wordpress.org/plugins/lxd-integral-microcredentials-for-learndash/)
+[![Tested up to](https://img.shields.io/wordpress/plugin/tested/lxd-integral-microcredentials-for-learndash)](https://wordpress.org/plugins/lxd-integral-microcredentials-for-learndash/)
+[![Downloads](https://img.shields.io/wordpress/plugin/dt/lxd-integral-microcredentials-for-learndash)](https://wordpress.org/plugins/lxd-integral-microcredentials-for-learndash/advanced/)
+
+**Available in the [WordPress.org plugin directory](https://wordpress.org/plugins/lxd-integral-microcredentials-for-learndash/).**
+Developed and published independently by LXD Integral Learning Ltd.; not affiliated with or
+endorsed by Open Badge Factory, CanCred, LearnDash, or StellarWP.
 
 ## What it does
 
@@ -45,8 +49,8 @@ Factory, CanCred, LearnDash, or StellarWP.
 
 ## Installing
 
-Install it from the WordPress plugin directory (**Plugins → Add New**, search for "Open Badges for
-LearnDash"), or download the zip attached to the latest entry on the
+Install it from the [WordPress plugin directory](https://wordpress.org/plugins/lxd-integral-microcredentials-for-learndash/)
+(**Plugins → Add New**, search for "LXD Integral Microcredentials"), or download the zip attached to the latest entry on the
 [Releases page](https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash/releases) and install it
 through **Plugins → Add New → Upload Plugin**. The archive contains only runtime files — no
 development dependencies, tests, or build tooling. (Development builds are also available as the
