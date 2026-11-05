@@ -4,16 +4,17 @@ name: Deploy to WordPress.org
 # repository: trunk/, tags/<version>/ and the directory assets.
 #
 # Two ways to run it:
-#   Push a release tag (v1.0.0)
-#       Deploys that tag. DRY_RUN below decides whether the SVN commit happens.
+#   Push a release tag (v1.1.0)
+#       Deploys that tag and commits it to SVN (DRY_RUN below is off since the
+#       1.0.0 release; set it to 'true' to rehearse a tag push without committing).
 #   Run workflow (workflow_dispatch)
 #       Pick the release tag to deploy and whether it is a dry run. Use this
-#       for the first deployment of a tag that was pushed before SVN existed,
-#       and for a dry run before any real commit.
+#       to rehearse a release, or to redeploy a tag by hand (1.0.0 was deployed
+#       this way on 2026-11-05 because the tag predated the SVN repository).
 #
-# Gate: repository variable WPORG_SVN_READY = true (set once the SVN
-# repository exists; it is created on approval). Until then the SVN step is
-# skipped and only the build and version check run.
+# Gate: repository variable WPORG_SVN_READY = true (set on 2026-11-04, after
+# approval). While unset the SVN step is skipped and only the build and
+# version check run.
 #
 # Secrets (repository settings → Secrets → Actions), required by the deploy
 # action even for a dry run:
@@ -40,7 +41,7 @@ on:
 env:
   SLUG: lxd-integral-microcredentials-for-learndash
   # Applies to tag pushes only; a manual run takes the dry_run input.
-  DRY_RUN: 'true'
+  DRY_RUN: 'false'
 
 jobs:
   deploy:
