@@ -139,14 +139,33 @@ not hidden by a stale copy), and issuing a badge — or a status change such as 
 purges the page cache. Public showcase pages (shortcodes with a fixed `user` attribute) remain
 fully cacheable.
 
+## Support and maintenance
+
+### Is this plugin maintained long term?
+
+Yes. LXD Integral Learning Ltd. has committed to maintaining the plugin until at least November
+2029 (three years from the 1.0.0 release), reviewed each November. In practice that means a
+standing weekly support and maintenance window, a first reply to support-forum threads within a
+week, compatibility kept current with each WordPress major release and with the Open Badge
+Factory / CanCred API, and an independent security review of the code each quarter on top of the
+automated checks that run on every change. Updates arrive through the normal WordPress update
+channel.
+
+### Where do I ask for help?
+
+The [WordPress.org support forum](https://wordpress.org/support/plugin/lxd-integral-microcredentials-for-learndash/)
+for questions and problems; [GitHub Issues](https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash/issues)
+for bugs with steps to reproduce. Security problems go through the private routes below, never
+the forum.
+
 ## Security
 
 ### How do I report a security issue?
 
 Privately, please. Use the **Report a vulnerability** form on the plugin's GitHub repository
 (https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash/security/advisories/new),
-or email the WordPress.org plugins team at plugins@wordpress.org naming this plugin; they forward
-reports to the maintainer. The repository's `SECURITY.md` is the full policy: only the latest
+email security@lxdintegral.com, or email the WordPress.org plugins team at plugins@wordpress.org
+naming this plugin; they forward reports to the maintainer. The repository's `SECURITY.md` is the full policy: only the latest
 release is supported, reports are acknowledged within a working day, and a fix ships as a patch
 release within seven days for anything exploitable without an administrator account (thirty days
 otherwise). Security fixes are named as "Security:" lines in the changelog. Please do not post

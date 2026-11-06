@@ -108,6 +108,17 @@ User documentation — an FAQ and material expanding on this README — lives in
 [docs/](docs/) and ships inside the release archive. The WordPress.org listing text is
 `readme.txt`.
 
+## Support and security
+
+- **Maintained until at least November 2029** (three years from 1.0.0), reviewed each November:
+  a weekly support window, compatibility kept current with each WordPress major release and the
+  OBF/CanCred API, and an independent security review each quarter on top of CI.
+- **Questions and problems:** the [WordPress.org support forum](https://wordpress.org/support/plugin/lxd-integral-microcredentials-for-learndash/);
+  reproducible bugs as [GitHub Issues](https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash/issues).
+- **Security reports:** privately, via the repository's
+  [Report a vulnerability](https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash/security/advisories/new)
+  form or security@lxdintegral.com. [SECURITY.md](SECURITY.md) is the full policy.
+
 ## License
 
 GPL-2.0-or-later. See [LICENSE](LICENSE).

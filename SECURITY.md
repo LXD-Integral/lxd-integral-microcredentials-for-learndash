@@ -1,7 +1,8 @@
 # Security policy
 
 LXD Integral Microcredentials for LearnDash is maintained by LXD Integral Learning Ltd. Security
-reports are read by the maintainer and get priority over every other kind of work.
+reports are read by the maintainer and get priority over every other kind of work. The plugin is
+maintained until at least November 2029 (see "Is this plugin maintained long term?" in the FAQ).
 
 ## Supported versions
 
@@ -20,10 +21,11 @@ Please do not open a public GitHub issue or a public support-forum topic for a s
 1. **Preferred:** use GitHub's private vulnerability reporting for this repository:
    https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash/security/advisories/new
    Only the maintainer can read it.
-2. **Alternative:** the WordPress.org plugins team at plugins@wordpress.org, naming this plugin
+2. **Email:** security@lxdintegral.com, which reaches the maintainer directly.
+3. **Alternative:** the WordPress.org plugins team at plugins@wordpress.org, naming this plugin
    (slug `lxd-integral-microcredentials-for-learndash`). They forward reports to the maintainer.
 
-Researchers working through Patchstack or Wordfence are welcome to use either route.
+Researchers working through Patchstack or Wordfence are welcome to use any of these routes.
 
 Include what you can of: the affected version, the steps or request that reproduce the issue, the
 role needed (anonymous visitor, logged-in learner, administrator), and the impact you observed.
