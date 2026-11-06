@@ -1,0 +1,28 @@
+# Dependabot keeps the three dependency surfaces current. Nothing here ships to
+# users at runtime (the plugin has no runtime Composer or npm dependencies);
+# the point is the build toolchain that produces the shipped block and the
+# workflows that publish releases. Updates arrive monthly, grouped, so a quiet
+# month is one PR per ecosystem at most.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ['*']
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      wordpress-scripts:
+        patterns: ['*']
+  - package-ecosystem: composer
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      php-dev-tools:
+        patterns: ['*']
