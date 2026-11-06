@@ -138,6 +138,10 @@ Per site. Activate and configure it on each site that needs it; network activati
 
 Nothing is deleted by default: uninstalling preserves your badges, triggers, award history, and log. Tick **Delete all plugin data when the plugin is uninstalled** on the Settings screen if you want everything removed.
 
+= How do I report a security issue? =
+
+Privately, please: use the "Report a vulnerability" form on the plugin's GitHub repository (https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash/security/advisories/new) or email the WordPress.org plugins team at plugins@wordpress.org naming this plugin. The repository's SECURITY.md gives the full policy: the latest release is the supported one, reports are acknowledged within a working day, and a fix ships as a patch release on a seven-day target for anything exploitable without an administrator account. Please do not post security problems in the public support forum.
+
 == Screenshots ==
 
 1. Settings: provider credentials with verified connection status.
