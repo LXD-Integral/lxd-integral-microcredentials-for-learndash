@@ -26,3 +26,10 @@ updates:
     groups:
       php-dev-tools:
         patterns: ['*']
+    ignore:
+      # PHPUnit 11+ needs PHP 8.2+, 12+ needs 8.3+, 13+ needs 8.4+. The plugin's
+      # floor is PHP 8.1 and CI installs dev dependencies there, so a PHPUnit
+      # major bump is a hand change tied to raising the floor, not a Dependabot
+      # PR. Minor and patch updates still arrive.
+      - dependency-name: phpunit/phpunit
+        update-types: ['version-update:semver-major']
