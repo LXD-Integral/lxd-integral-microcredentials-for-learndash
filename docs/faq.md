@@ -138,3 +138,16 @@ full-page caching (so one visitor's badges are never served to another, and fres
 not hidden by a stale copy), and issuing a badge — or a status change such as a revocation —
 purges the page cache. Public showcase pages (shortcodes with a fixed `user` attribute) remain
 fully cacheable.
+
+## Security
+
+### How do I report a security issue?
+
+Privately, please. Use the **Report a vulnerability** form on the plugin's GitHub repository
+(https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash/security/advisories/new),
+or email the WordPress.org plugins team at plugins@wordpress.org naming this plugin; they forward
+reports to the maintainer. The repository's `SECURITY.md` is the full policy: only the latest
+release is supported, reports are acknowledged within a working day, and a fix ships as a patch
+release within seven days for anything exploitable without an administrator account (thirty days
+otherwise). Security fixes are named as "Security:" lines in the changelog. Please do not post
+security problems in the public support forum.

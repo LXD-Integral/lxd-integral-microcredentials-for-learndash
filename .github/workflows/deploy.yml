@@ -48,7 +48,7 @@ jobs:
     name: Build and deploy ${{ inputs.tag || github.ref_name }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           ref: ${{ inputs.tag || github.ref }}
 
@@ -70,13 +70,15 @@ jobs:
           echo "DRY_RUN=$dry_run" >> "$GITHUB_ENV"
           echo "tag=$tag version=${tag#v} dry_run=$dry_run"
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '20'
 
       - name: Build the block
         run: |
-          npm ci
+          # --ignore-scripts: the block build needs no package install hooks, and
+          # a hook is how a compromised dev dependency would run code here.
+          npm ci --ignore-scripts
           npm run build
 
       # Same allow-list as CI, so the deployed tree is the tested tree.
@@ -102,7 +104,7 @@ jobs:
 
       - name: Deploy to WordPress.org SVN
         if: vars.WPORG_SVN_READY == 'true'
-        uses: 10up/action-wordpress-plugin-deploy@stable
+        uses: 10up/action-wordpress-plugin-deploy@54bd289b8525fd23a5c365ec369185f2966529c2 # 2.3.0
         with:
           dry-run: ${{ env.DRY_RUN == 'true' }}
           generate-zip: true
