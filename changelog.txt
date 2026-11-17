@@ -5,6 +5,17 @@ The current release is described in readme.txt. This file keeps the full
 history, including the pre-release builds distributed before the plugin was
 listed in the WordPress plugin directory.
 
+1.0.1 (2026-11-16)
+------------------
+* Fix: a quiz trigger now awards only when LearnDash records the attempt as
+  passed. LearnDash fires its quiz-completed hook for failed attempts too, and
+  1.0.0 awarded on those when the trigger had no minimum score, or one below
+  the quiz's own pass mark. Backfill already required a pass and is unchanged.
+* The quiz event is now labelled "Quiz passed" on the Triggers screen. The
+  stored event value is unchanged, so existing quiz triggers keep working.
+* Badges 1.0.0 issued on a failed attempt are not withdrawn automatically;
+  revoke them at the provider if needed.
+
 1.0.0 (2026-10)
 ---------------
 * First release in the WordPress plugin directory.
