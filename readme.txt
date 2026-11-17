@@ -4,7 +4,7 @@ Tags: open badges, learndash, badges, microcredentials, cancred
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,7 @@ LXD Integral Microcredentials for LearnDash connects your LearnDash site to **Op
 
 * Connects to Open Badge Factory and/or CanCred and shows a live, verified connection status.
 * Syncs the badges available in each connected account.
-* Lets you define **triggers**: "when a learner completes *this* course, lesson, topic, or quiz, award *that* badge", with an optional minimum score on quiz triggers.
+* Lets you define **triggers**: "when a learner completes *this* course, lesson or topic, or passes *this* quiz, award *that* badge", with an optional minimum score on quiz triggers.
 * Issues the badge automatically in the background when a learner completes the item, retrying if the provider is temporarily unreachable and never issuing the same badge twice.
 * Lets you award badges by hand, and **backfill** a trigger over learners who finished before the trigger existed.
 * Displays a learner's earned badges with the `[user_badges]` shortcode or the **Earned Badges** block. Each badge carries a **Save & share** link (the owner's page at the provider, where the badge can be saved to Open Badge Passport / CanCred Passport or downloaded) and a public **Verify** link to the provider's hosted validator.
@@ -102,6 +102,10 @@ Yes. **Issue Badges → Backfill** runs a trigger over learners who completed th
 
 Yes. Quiz triggers accept an optional minimum percentage. A completion without a score never satisfies a score condition.
 
+= Does a failed quiz attempt award a badge? =
+
+No. A quiz trigger awards only when LearnDash records the attempt as passed, using the passing percentage set on the quiz. A minimum score on the trigger is an extra bar on top of that, not a way around it: to award at a lower score, lower the quiz's own passing percentage. Version 1.0.0 also awarded on failed attempts when the trigger had no minimum score, or one below the quiz's pass mark; 1.0.1 corrects that. Badges 1.0.0 issued on a failed attempt are not withdrawn automatically. If you need to withdraw one, revoke it at Open Badge Factory or CanCred and the plugin will hide it at its next status check.
+
 = What do the links under each earned badge do? =
 
 **Save & share** opens the badge's claim page at the provider, where the learner can save the badge to Open Badge Passport / CanCred Passport, share it, or download it. It appears only to the badge's owner. **Verify** opens the provider's public validator, which confirms that the credential is valid, not revoked, and not expired. It is shown to every visitor.
@@ -157,6 +161,10 @@ Privately, please: use the "Report a vulnerability" form on the plugin's GitHub 
 
 == Changelog ==
 
+= 1.0.1 =
+* Fix: a quiz trigger now awards only when LearnDash records the attempt as passed. In 1.0.0 a failed attempt was awarded when the trigger had no minimum score, or one below the quiz's own pass mark. Backfill already required a pass and is unchanged.
+* The quiz event is now labelled "Quiz passed" on the Triggers screen. Existing quiz triggers keep working without changes.
+
 = 1.0.0 =
 * First release in the WordPress plugin directory.
 * Built-in PSR-4 autoloader; the plugin ships no vendor directory.
@@ -169,6 +177,9 @@ Privately, please: use the "Report a vulnerability" form on the plugin's GitHub 
 The pre-release history (0.1.0 to 0.4.0) is in `changelog.txt`.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Quiz triggers no longer award a badge on a failed attempt. Badges already issued on a failed attempt are not withdrawn automatically; revoke them at your badge provider if needed.
 
 = 1.0.0 =
 First directory release. Existing 0.x installs upgrade in place; the database schema is upgraded automatically.

@@ -56,6 +56,17 @@ the trigger existed. You can also issue any badge to any learner by hand from th
 Yes. Quiz triggers accept an optional minimum percentage. A completion without a score never
 satisfies a score condition — the plugin will not award on a missing score.
 
+### Does a failed quiz attempt award a badge?
+
+No. A quiz trigger awards only when LearnDash records the attempt as passed, using the passing
+percentage set on the quiz. A minimum score on the trigger is an extra bar on top of that, not a
+way around it: to award at a lower score, lower the quiz's own passing percentage.
+
+Version 1.0.0 also awarded on failed attempts when the trigger had no minimum score, or one below
+the quiz's pass mark; 1.0.1 corrects that. Badges 1.0.0 issued on a failed attempt are not
+withdrawn automatically. If you need to withdraw one, revoke it at Open Badge Factory or CanCred
+and the plugin will hide it at its next status check.
+
 ## What learners and visitors see
 
 ### What do the links under each earned badge do?

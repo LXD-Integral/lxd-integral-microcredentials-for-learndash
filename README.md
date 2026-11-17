@@ -17,8 +17,8 @@ endorsed by Open Badge Factory, CanCred, LearnDash, or StellarWP.
 
 - Connects to Open Badge Factory and/or CanCred and shows a live, verified connection status.
 - Syncs the badges available in each connected account.
-- Lets you define **triggers** — "when a learner completes *this* course, lesson, topic, or quiz,
-  award *that* badge" — with an optional minimum score on quiz triggers.
+- Lets you define **triggers** — "when a learner completes *this* course, lesson or topic, or
+  passes *this* quiz, award *that* badge" — with an optional minimum score on quiz triggers.
 - Issues the badge automatically in the background when a learner completes the item, retrying if
   the provider is temporarily unreachable and never issuing the same badge twice.
 - Lets you award badges by hand, and **backfill** a trigger over learners who finished before the

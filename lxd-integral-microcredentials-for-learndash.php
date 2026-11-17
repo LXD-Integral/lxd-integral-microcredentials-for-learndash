@@ -3,7 +3,7 @@
  * Plugin Name:       LXD Integral Microcredentials for LearnDash
  * Plugin URI:        https://github.com/LXD-Integral/lxd-integral-microcredentials-for-learndash
  * Description:       Automatically issue Open Badges to LearnDash learners via Open Badge Factory or CanCred.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.6
  * Requires PHP:      8.1
  * Author:            LXD Integral Learning Ltd.
@@ -19,7 +19,7 @@ declare( strict_types=1 );
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'OBLD_VERSION', '1.0.0' );
+define( 'OBLD_VERSION', '1.0.1' );
 define( 'OBLD_FILE', __FILE__ );
 define( 'OBLD_DIR', plugin_dir_path( __FILE__ ) );
 define( 'OBLD_URL', plugin_dir_url( __FILE__ ) );

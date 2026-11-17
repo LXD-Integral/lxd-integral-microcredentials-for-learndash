@@ -15,7 +15,10 @@ defined( 'ABSPATH' ) || exit;
  * The four LearnDash completion events a trigger can listen for.
  *
  * The string values are persisted in obld_triggers.event_type, so they are a
- * storage contract: rename a case and existing triggers stop matching.
+ * storage contract: rename a case and existing triggers stop matching. That
+ * is why the quiz event keeps the value `quiz_completed` although it means,
+ * and is labelled, "Quiz passed": LearnDash's quiz-completed hook also fires
+ * for failed attempts, which never award a badge.
  */
 enum EventType: string {
 
@@ -32,7 +35,7 @@ enum EventType: string {
 			self::CourseCompleted => __( 'Course completed', 'lxd-integral-microcredentials-for-learndash' ),
 			self::LessonCompleted => __( 'Lesson completed', 'lxd-integral-microcredentials-for-learndash' ),
 			self::TopicCompleted  => __( 'Topic completed', 'lxd-integral-microcredentials-for-learndash' ),
-			self::QuizCompleted   => __( 'Quiz completed', 'lxd-integral-microcredentials-for-learndash' ),
+			self::QuizCompleted   => __( 'Quiz passed', 'lxd-integral-microcredentials-for-learndash' ),
 		};
 	}
 

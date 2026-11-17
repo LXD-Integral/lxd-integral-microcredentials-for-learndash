@@ -29,6 +29,12 @@ defined( 'ABSPATH' ) || exit;
  *  - `learndash_quiz_completed`    → TWO args: $quizdata array, WP_User
  *                                    ($quizdata: quiz, percentage, pass, …)
  *
+ * `learndash_quiz_completed` fires for every submitted attempt, failed ones
+ * included (and again once a quiz's essays are graded and it is passed), so
+ * "completed" there does not mean "passed". A quiz trigger awards only when
+ * `$quizdata['pass']` is set — the same rule backfill gets from LearnDash's
+ * activity table, where a quiz row's `activity_status` is the pass flag.
+ *
  * Nothing here talks to a provider. Each handler resolves the learner and the
  * completed item, then hands off to IssuanceService::queue(), which only
  * writes a row and schedules cron — a provider outage can never slow down or
@@ -90,14 +96,21 @@ final class CompletionListener {
 	}
 
 	/**
-	 * Quiz completed. Unlike the other three, this hook passes the user
-	 * separately and carries the score.
+	 * Quiz attempt submitted. Unlike the other three, this hook passes the
+	 * user separately, carries the score, and fires whether or not the learner
+	 * passed — so the pass flag is checked here before anything is matched.
 	 *
 	 * @param array<string, mixed> $quizdata Quiz result data.
 	 * @param mixed                $user     WP_User for the learner.
 	 */
 	public function on_quiz_completed( $quizdata, $user = null ): void {
 		if ( ! is_array( $quizdata ) ) {
+			return;
+		}
+
+		// A badge is a credential: a failed attempt never earns one, and an
+		// attempt that does not say it passed is not assumed to have.
+		if ( empty( $quizdata['pass'] ) ) {
 			return;
 		}
 

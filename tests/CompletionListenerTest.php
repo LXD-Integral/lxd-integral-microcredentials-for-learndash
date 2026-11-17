@@ -91,7 +91,8 @@ final class FakeIssuanceService extends IssuanceService {
  * The payload shapes asserted here were read from LearnDash 5.1.8 source:
  * course/lesson/topic pass a single array containing WP_User and WP_Post
  * objects; quiz passes ($quizdata, WP_User) with the score in
- * $quizdata['percentage'].
+ * $quizdata['percentage'] and the pass flag (1 or 0) in $quizdata['pass'].
+ * LearnDash fires the quiz hook for failed attempts too.
  */
 final class CompletionListenerTest extends TestCase {
 
@@ -218,7 +219,7 @@ final class CompletionListenerTest extends TestCase {
 		$this->triggers->matches['quiz_completed|11'] = array( $this->trigger( 1, 3, 80.0 ) );
 
 		$this->listener->on_quiz_completed(
-			array( 'quiz' => 11, 'percentage' => 80 ),
+			array( 'quiz' => 11, 'percentage' => 80, 'pass' => 1 ),
 			new \WP_User( 7 )
 		);
 
@@ -229,7 +230,7 @@ final class CompletionListenerTest extends TestCase {
 		$this->triggers->matches['quiz_completed|11'] = array( $this->trigger( 1, 3, 80.0 ) );
 
 		$this->listener->on_quiz_completed(
-			array( 'quiz' => 11, 'percentage' => 79.99 ),
+			array( 'quiz' => 11, 'percentage' => 79.99, 'pass' => 1 ),
 			new \WP_User( 7 )
 		);
 
@@ -239,17 +240,45 @@ final class CompletionListenerTest extends TestCase {
 	public function test_a_missing_score_never_satisfies_a_score_condition(): void {
 		$this->triggers->matches['quiz_completed|11'] = array( $this->trigger( 1, 3, 50.0 ) );
 
-		$this->listener->on_quiz_completed( array( 'quiz' => 11 ), new \WP_User( 7 ) );
+		$this->listener->on_quiz_completed( array( 'quiz' => 11, 'pass' => 1 ), new \WP_User( 7 ) );
 
-		$this->assertSame( array(), $this->issuance->queued, 'An absent score must not be treated as a pass.' );
+		$this->assertSame( array(), $this->issuance->queued, 'An absent score must not be treated as meeting the minimum.' );
 	}
 
-	public function test_a_quiz_trigger_without_a_score_condition_awards_on_completion(): void {
+	public function test_a_quiz_trigger_without_a_score_condition_awards_a_passed_attempt(): void {
 		$this->triggers->matches['quiz_completed|11'] = array( $this->trigger( 1 ) );
 
-		$this->listener->on_quiz_completed( array( 'quiz' => 11, 'percentage' => 12 ), new \WP_User( 7 ) );
+		$this->listener->on_quiz_completed( array( 'quiz' => 11, 'percentage' => 85, 'pass' => 1 ), new \WP_User( 7 ) );
 
 		$this->assertCount( 1, $this->issuance->queued );
+	}
+
+	public function test_a_failed_quiz_attempt_is_never_awarded(): void {
+		$this->triggers->matches['quiz_completed|11'] = array( $this->trigger( 1 ) );
+
+		// LearnDash fires learndash_quiz_completed for failed attempts too.
+		$this->listener->on_quiz_completed( array( 'quiz' => 11, 'percentage' => 12, 'pass' => 0 ), new \WP_User( 7 ) );
+
+		$this->assertSame( array(), $this->issuance->queued );
+		$this->assertSame( array(), $this->triggers->queried, 'A failed attempt should not even look for triggers.' );
+	}
+
+	public function test_a_failed_attempt_is_not_awarded_even_when_it_meets_the_minimum_score(): void {
+		// The trigger's bar (50) is below the quiz's own pass mark, so the
+		// learner clears ours but LearnDash still records a fail.
+		$this->triggers->matches['quiz_completed|11'] = array( $this->trigger( 1, 3, 50.0 ) );
+
+		$this->listener->on_quiz_completed( array( 'quiz' => 11, 'percentage' => 60, 'pass' => 0 ), new \WP_User( 7 ) );
+
+		$this->assertSame( array(), $this->issuance->queued );
+	}
+
+	public function test_an_attempt_without_a_pass_flag_is_not_assumed_to_have_passed(): void {
+		$this->triggers->matches['quiz_completed|11'] = array( $this->trigger( 1 ) );
+
+		$this->listener->on_quiz_completed( array( 'quiz' => 11, 'percentage' => 100 ), new \WP_User( 7 ) );
+
+		$this->assertSame( array(), $this->issuance->queued );
 	}
 
 	public function test_a_badge_missing_at_the_provider_is_skipped_not_queued(): void {
